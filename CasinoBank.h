@@ -7,7 +7,7 @@ public:
 
 	void initCB(float bank);
 
-
+	float BankPrint() { return _Bank; };
 	~CasinoBank();
 
 private:
