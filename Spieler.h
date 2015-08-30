@@ -9,19 +9,19 @@ class Spieler
 public:
 	Spieler();
 	
+	
+
+	void initSpieler(string spielerName, float konto);
+
+	string holeSpielerName() { return _spielerName; };
+	float holeSpielerKonto() { return _Konto; };
 	~Spieler();
-
-	void initSpieler(string spielerName, float konto, float verlorenAufRot, float _verlorenAufSchwarz, unsigned short int gespielteSpiele);
-
 private:
 
 	string _spielerName;
 
 	float _Konto;
-	float _verlorenAufRot;
-	float _verlorenAufSchwarz;
-
-	unsigned short int _gespielteSpiele;
+	
 
 };
 
