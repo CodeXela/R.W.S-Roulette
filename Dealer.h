@@ -6,10 +6,10 @@ public:
 
 	Dealer();
 
-	~Dealer();
+	
 
 	int RolltKugel();
-
+	~Dealer();
 private:
 	
 };
