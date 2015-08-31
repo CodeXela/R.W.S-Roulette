@@ -1,5 +1,6 @@
 #pragma once
-
+#include <vector>
+#include <string>
 
 #include "CasinoBank.h"
 #include "Dealer.h"
@@ -20,6 +21,8 @@ public:
 	void coutc(int color, char* output);
 
 	void Print();
+
+	void Speichern();
 
 	~Tisch();
 
@@ -52,7 +55,6 @@ private:
 
 	int _Width;
 	int _Height;
-
 
 
 };

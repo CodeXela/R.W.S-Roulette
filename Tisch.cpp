@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <Windows.h>
+#include <mmsystem.h>
+#include <fstream>
 #include "Tisch.h"
 
 using namespace std;
@@ -48,16 +50,18 @@ void Tisch::Print()
 	
 	printf("                                                                        \n");
 	
+	cout << "                           "; coutc(grey, "Roulette Simulator v0.1\n");
+	cout << endl; 
+	cout <<"   Spieler Name:   "<<_spieler.holeSpielerName(); printf("                             Casino Bank:  %0.2f Euro  \n", _casinoBank.BankPrint());
 
-	cout <<"Spieler Name:   "<<_spieler.holeSpielerName(); printf("                             Casino Bank:  %0.2f Euro\n", _casinoBank.BankPrint());
+	printf("   Spieler Konto:  %0.2f Euro", _spieler.holeSpielerKonto()); printf("                           Mindesteinsatz:  %0.2f Cent  \n", _Mindesteinsatz);
 
-	printf("Spieler Konto:  %0.2f Euro", _spieler.holeSpielerKonto()); printf("                         Mindesteinsatz:  %0.2f Cent\n", _Mindesteinsatz);
-
-	
+	//printf("%d",_dealer.RolltKugel());//Dealer Sound und Zahlausgabe (Test)
 
 
 }
-void Tisch::SetWindow(int Width, int Height) // Aufbau der consolengröße
+
+void Tisch::SetWindow(int Width, int Height) // Aufbau der Consolengröße
 {
 	_COORD coord;
 	coord.X = Width;
@@ -71,7 +75,7 @@ void Tisch::SetWindow(int Width, int Height) // Aufbau der consolengröße
 
 	HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);      // Get Handle
 	SetConsoleScreenBufferSize(Handle, coord);            // Setze Buffer Größe
-	SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Setze Window Größe
+	SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Setze Fenster Größe
 	
 	
 }
@@ -82,6 +86,27 @@ void Tisch::coutc(int color, char* output)
 	cout << output;
 	SetConsoleTextAttribute(handle, color);
 }
+void Tisch::Speichern()
+{
+	ofstream FILE;
 
+	FILE.open("save.txt");
+	if (FILE.fail())
+	{
+		perror("save.txt");
+
+		
+	}
+	if (FILE.is_open())
+	{
+
+		FILE << std::fixed << _spieler.holeSpielerName() << endl;
+		FILE << std::fixed << _spieler.holeSpielerKonto() << endl;
+		FILE << std::fixed << _casinoBank.BankPrint() << endl;
+
+	}FILE.close();
+
+
+}
 
 
