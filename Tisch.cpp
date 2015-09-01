@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <Windows.h>
-#include <mmsystem.h>
 #include <fstream>
 #include <iomanip>
 
@@ -25,7 +24,7 @@ Tisch::Tisch()
 
 	InitTisch(false,false,false,0.0f,0.0f,0);//Statistik startwerte (MERKE*ersetzen mit eingabe)
 	
-	_spieler.initSpieler("Temako",100.0f);// Spieler startwerte (MERKE*ersetzen mit eingabe)
+	_spieler.initSpieler("Temako",100.0f,0);// Spieler startwerte (MERKE*ersetzen mit eingabe)
 
 	_casinoBank.initCB(1000000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
 	
@@ -53,12 +52,12 @@ void Tisch::Print()
 	
 	printf("                                                                        \n");
 	
-	cout << "                           "; coutc(grey, "Roulette Simulator v0.1\n");
+	cout << "                              "; coutc(grey, "Roulette Simulator v0.1\n");
 	cout << endl; 
-	cout <<"   Spieler Name:   "<<_spieler.holeSpielerName(); printf("                             Casino Bank:  %0.2f Euro  \n", _casinoBank.BankPrint());
+	cout <<"   Spieler Name:         "<<_spieler.holeSpielerName(); printf("                      Casino Bank:  %0.2f Euro   \n", _casinoBank.BankPrint());
 
-	printf("   Spieler Konto:  %0.2f Euro", _spieler.holeSpielerKonto()); printf("                           Mindesteinsatz:  %0.2f Cent  \n", _Mindesteinsatz);
-	
+	printf("   Spieler Konto:        %0.2f Euro", _spieler.holeSpielerKonto()); printf("              Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
+	printf("   Spieler Erfahrung:      %d Punkte.                                                                            ", _spieler.holeSpielerXP());
 	
 	//printf("%d",_dealer.RolltKugel());//Dealer Sound und Zahlausgabe (Test)
 
@@ -94,10 +93,10 @@ void Tisch::Speichern()
 {
 	ofstream FILE;
 
-	FILE.open("save.txt");
+	FILE.open("saveSpieler.txt");
 	if (FILE.fail())
 	{
-		perror("save.txt");
+		perror("saveSpieler.txt");
 
 		
 	}
