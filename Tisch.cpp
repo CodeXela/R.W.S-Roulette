@@ -6,6 +6,9 @@
 #include <Windows.h>
 #include <mmsystem.h>
 #include <fstream>
+#include <iomanip>
+
+
 #include "Tisch.h"
 
 using namespace std;
@@ -55,7 +58,8 @@ void Tisch::Print()
 	cout <<"   Spieler Name:   "<<_spieler.holeSpielerName(); printf("                             Casino Bank:  %0.2f Euro  \n", _casinoBank.BankPrint());
 
 	printf("   Spieler Konto:  %0.2f Euro", _spieler.holeSpielerKonto()); printf("                           Mindesteinsatz:  %0.2f Cent  \n", _Mindesteinsatz);
-
+	
+	
 	//printf("%d",_dealer.RolltKugel());//Dealer Sound und Zahlausgabe (Test)
 
 
@@ -100,9 +104,9 @@ void Tisch::Speichern()
 	if (FILE.is_open())
 	{
 
-		FILE << std::fixed << _spieler.holeSpielerName() << endl;
-		FILE << std::fixed << _spieler.holeSpielerKonto() << endl;
-		FILE << std::fixed << _casinoBank.BankPrint() << endl;
+		FILE << std::fixed  << _spieler.holeSpielerName() << endl;
+		FILE << std::fixed << std::setprecision(2) << _spieler.holeSpielerKonto() << endl;
+		FILE << std::fixed << std::setprecision(2) << _casinoBank.BankPrint() << endl;
 
 	}FILE.close();
 
