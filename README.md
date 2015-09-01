@@ -1,6 +1,6 @@
 #  R.W. Simulator
 
-Willkommen bei meinem Projekt zur persönlichen weiterbildung !
+Willkommen bei meinem Projekt zur persönlichen Weiterbildung !
 
 Anregungen und Hilfestellungen sind erwünscht.
 
@@ -18,4 +18,4 @@ Einfache Chancen  1 : 1 / Dutzende, Kolonnen  2 : 1 / Transversale simple 5 : 1 
 
  3.Automatisches Spielen.
 
- 4.Singel & Multiplayer in ASCII Style. 
+ 4.Single & Multiplayer in ASCII Style. 
