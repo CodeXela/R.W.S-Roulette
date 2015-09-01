@@ -11,10 +11,11 @@ public:
 	
 	
 
-	void initSpieler(string spielerName, float konto);
+	void initSpieler(string spielerName, float konto,int XP);
 
 	string holeSpielerName() { return _spielerName; };
 	float holeSpielerKonto() { return _Konto; };
+	int holeSpielerXP() { return _XP; };
 	~Spieler();
 private:
 
@@ -22,6 +23,7 @@ private:
 
 	float _Konto;
 	
+	int  _XP;
 
 };
 

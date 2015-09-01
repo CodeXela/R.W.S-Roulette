@@ -15,11 +15,11 @@ Spieler::~Spieler()
 
 }
 
-void Spieler::initSpieler(string spielerName,float konto)
+void Spieler::initSpieler(string spielerName,float konto,int XP)
 {
 	_spielerName = spielerName;
 	_Konto = konto;
-
+	_XP = XP;
 
 }
 
