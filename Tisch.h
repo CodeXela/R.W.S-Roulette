@@ -1,5 +1,6 @@
 #pragma once
 
+#include "formatierung.h"
 #include "CasinoBank.h"
 #include "Dealer.h"
 #include "Spieler.h"
@@ -21,6 +22,8 @@ public:
 	void Print();
 
 	void Speichern();
+
+	/*void Laden(Spieler Sp,CasinoBank CB);*/
 
 	~Tisch();
 
@@ -50,6 +53,7 @@ private:
 	Spieler _spieler;
 	Dealer _dealer;
 	CasinoBank _casinoBank;
+
 
 	int _Width;
 	int _Height;
