@@ -1,6 +1,6 @@
 #pragma once
 
-#include "formatierung.h"
+
 #include "CasinoBank.h"
 #include "Dealer.h"
 #include "Spieler.h"
