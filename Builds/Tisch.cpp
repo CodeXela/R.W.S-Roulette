@@ -22,11 +22,11 @@ Tisch::Tisch()
 	
 	SetWindow(85,40);//setze Consolengröße fest
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN);//setze Consolenhintergrund fest
+	//SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN);//setze Consolenhintergrund fest (TO DO)
 
 	InitTisch(false,false,false,0.0f,0.0f,0);//Statistik startwerte (MERKE*ersetzen mit eingabe)
 	
-	_spieler.initSpieler("Temako",100.0f,0);// Spieler startwerte (MERKE*ersetzen mit eingabe)
+	_spieler.initSpieler("Temak",100.0f,0.0f);// Spieler startwerte (MERKE*ersetzen mit eingabe)
 
 	_casinoBank.initCB(1000000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
 
@@ -52,41 +52,47 @@ void Tisch::InitTisch(bool rundeGewonnen, bool bleibtRot, bool bleibtSchwarz, fl
 void Tisch::Print()
 {
 
-	Navigation Navigon =MAIN_MENU;
-	int optionen=MAIN_MENU;
+	Navigation Navigon = MAIN_MENU;
+	int optionen = MAIN_MENU;
 	
 	while (Navigon != EXIT)
 	{
-		
-		
-		
+
+
+
 		switch (optionen)
 		{
-			
+
 		case MAIN_MENU:
 			cout << "                              "; coutc(grey, "Roulette Simulator v0.1\n\n\n\n\n");
 
-			printf("Bitte Waehle zwischen: \n");
-			printf("(1)Single Player  (2)AI Player  (3)Option  (4)Exit\n");
+
+			printf("                                 (1)Single Player\n                                 (2)AI Player\n                                 (3)Option\n                                 (4)Exit\n");
 			cin >> optionen;
-				break;
+			system("CLS");
+
+			cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
+			_spieler.setzeSpielerXP(1.0);
+			break;
 
 
 		case SINGLE_PLAYER:
-			
-			printf("                                                                        \n");
 
-			cout << "                              "; /*coutc(grey, "Roulette Simulator v0.1\n");*/
-			cout << endl;
-			cout << "   Spieler Name:         " << _spieler.holeSpielerName(); printf("                      Casino Bank:  %0.2f Euro   \n", _casinoBank.BankPrint());
-
-			printf("   Spieler Konto:        %0.2f Euro.", _spieler.holeSpielerKonto()); printf("              Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
-			printf("   Spieler Erfahrung:      %d Punkte.                                                                            ", _spieler.holeSpielerXP());
+			printf("                                                                                           \n");
+			cout << "  Spieler Name:         " << _spieler.holeSpielerName(); printf("                      Casino Bank:  %0.1f Euro   \n", _casinoBank.BankPrint());
+			printf("  Spieler Konto:        %0.1f Euro.", _spieler.holeSpielerKonto()); printf("              Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
+			printf("  Spieler Erfahrung:      %0.1f Punkte.                                                                            ", _spieler.holeSpielerXP());
 
 			//printf("%d",_dealer.RolltKugel());//Dealer Sound und Zahlausgabe (Test)
+
+
+
+			printf("(S)etzen oder (V)verlassen");
+			cin >> optionen;
+			
 			getchar();
 			break;
-		
+
 		case AI_PLAYER:
 
 			break;
@@ -96,18 +102,19 @@ void Tisch::Print()
 		case EXIT:
 
 			Navigon = EXIT;
-
+			printf("Auf wiedersehen");
+			Speichern();
 			break;
 		default:
-			cout << "                              "; coutc(grey, "Roulette Simulator v0.1\n\n\n\n\n");
+			//cout << "                              "; coutc(grey, "Roulette Simulator v0.1\n\n\n\n\n");
 
-			printf("Bitte Waehle zwischen: \n");
-			printf("(1)Single Player  (2)AI Player  (3)Option  (4)Exit\n");
-			cin >> optionen;
+			//printf("Bitte Waehle zwischen: \n");
+			//printf("(1)Single Player  (2)AI Player  (3)Option  (4)Exit\n");
+			//cin >> optionen;
 			break;
 
-		}	
-	}	
+		}
+	} 
 }
 
 void Tisch::SetWindow(int Width, int Height) // Aufbau der Consolengröße
@@ -150,8 +157,8 @@ void Tisch::Speichern()
 	{
 
 		FILE << std::fixed  << _spieler.holeSpielerName() << endl;
-		FILE << std::fixed << std::setprecision(2) << _spieler.holeSpielerKonto() << endl;
-		FILE << std::fixed << std::setprecision(2) << _casinoBank.BankPrint() << endl;
+		FILE << std::fixed << std::setprecision(1) << _spieler.holeSpielerKonto() << endl;
+		FILE << std::fixed << std::setprecision(1) << _casinoBank.BankPrint() << endl;
 
 	}FILE.close();
 

@@ -20,7 +20,7 @@ int main()
 	Tisch T1;
 	system("CLS");
 	T1.Print();
-	T1.Speichern();
+
 
 
 
