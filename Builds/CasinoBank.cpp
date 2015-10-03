@@ -16,3 +16,14 @@ void CasinoBank::initCB(float bank)
 CasinoBank::~CasinoBank()
 {
 }
+
+void CasinoBank::setzeBankKonto(float bank)
+{
+	_Bank += bank;
+
+}
+void CasinoBank::entferneBankKonto(float nbank)
+{
+	_Bank -= nbank;
+
+}

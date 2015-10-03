@@ -7,7 +7,10 @@ public:
 
 	void initCB(float bank);
 
-	float BankPrint() { return _Bank; };
+	float holeBank() { return _Bank; };
+	void setzeBankKonto(float bank);
+	void entferneBankKonto(float nbank);
+
 	~CasinoBank();
 
 private:
