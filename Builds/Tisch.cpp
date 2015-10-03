@@ -14,8 +14,9 @@ using namespace std;
 
 enum Colors { blue = 1, green, cyan, red, purple, yellow, grey, dgrey, hblue, hgreen, hred, hpurple, hyellow, hwhite };// vergebe feste Nummern für Farben
 
-enum Navigation{MAIN_MENU, SINGLE_PLAYER, AI_PLAYER, OPTION, EXIT};
+enum Navigation{MAIN_MENU=1, SINGLE_PLAYER, AI_PLAYER, OPTION, EXIT};
 
+enum Steuerung{MENUE_SETZEN=1,SETZE_ROT,SETZE_SCHWARZ};
 
 Tisch::Tisch()
 {
@@ -51,10 +52,13 @@ void Tisch::InitTisch(bool rundeGewonnen, bool bleibtRot, bool bleibtSchwarz, fl
 
 void Tisch::Print()
 {
-
+	float xpanzahl = 1000;//XP und LVL Test
 	Navigation Navigon = MAIN_MENU;
-	int optionen = MAIN_MENU;
-	
+	unsigned short int optionen = Navigon;
+
+	Steuerung Setzen = MENUE_SETZEN;
+
+
 	while (Navigon != EXIT)
 	{
 
@@ -64,20 +68,28 @@ void Tisch::Print()
 		{
 
 		case MAIN_MENU:
+			
+
 			cout << "                              "; coutc(grey, "Roulette Simulator v0.101\n\n\n\n\n");
 
 
-			printf("                                 (1)Single Player\n                                 (2)AI Player\n                                 (3)Option\n                                 (4)Exit\n");
+			printf("                                 (2)Single Player\n                                 (3)AI Player\n                                 (4)Option\n                                 (5)Exit\n");
 			cin >> optionen;
-			system("CLS");
 
+
+			cin.clear();
 			cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
-			_spieler.setzeSpielerXP(1001);
+
+			_spieler.setzeSpielerXP(xpanzahl);//XP und LVL Test
+
+			system("CLS");
+			
 			break;
 
 
 		case SINGLE_PLAYER:
 
+			system("CLS");
 			printf("-------------------------------------------------------------------------------------------\n");
 			cout << "  Spieler Name:       " << _spieler.holeSpielerName()<<"  LVL: "<<_spieler.holeSpielerLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
 			printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeSpielerKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
@@ -90,9 +102,11 @@ void Tisch::Print()
 			printf("(S)etzen oder (V)verlassen");
 			
 			cin >> optionen;
-		
+
+			
 			system("CLS");
 			cin.clear();
+			cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
 			break;
 
 		case AI_PLAYER:
@@ -103,9 +117,11 @@ void Tisch::Print()
 			break;
 		case EXIT:
 
-			Navigon = EXIT;
+			
+			
 			printf("Auf wiedersehen");
 			Speichern();
+			Navigon=EXIT;
 			break;
 		default:
 			//cout << "                              "; coutc(grey, "Roulette Simulator v0.1\n\n\n\n\n");

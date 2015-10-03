@@ -22,7 +22,7 @@ void Spieler::initSpieler(string spielerName,float konto,float XP, unsigned shor
 	_XP = XP;
 	_LVL = Lvl;
 }
-void Spieler::setzeSpielerXP(float xp)
+void Spieler::setzeSpielerXP(float &xp)
 {
 	_XP += xp;
 
@@ -31,16 +31,20 @@ void Spieler::setzeSpielerXP(float xp)
 			_XP -= 1000.0f;
 			_LVL++;
 
+			printf("Neuling Stufe %d erreicht", _LVL);
+			getchar();
 		}
 		if (_XP > 2000.0f && _LVL < 10) {
 			_XP -= 2000.0f;
 			_LVL++;
-
+			printf("Anfänger Stufe %d erreicht", _LVL);
+			getchar();
 		}
 		if (_XP > 3000.0f && _LVL <= 15) {
 			_XP -= 3000.0f;
 			_LVL++;
-
+			printf("Mitspieler Stufe %d erreicht", _LVL);
+			getchar();
 		}
 		if (_XP > 4000.0f && _LVL <= 20) {
 			_XP -= 4000.0f;
@@ -106,19 +110,19 @@ void Spieler::setzeSpielerName(string SN)
 	_spielerName = SN;
 
 }
-void Spieler::setzeSpielerKonto(float k)
+void Spieler::setzeSpielerKonto(float &k)
 {
 
 	_Konto += k;
 
 }
 
-void Spieler::entferneSpielerKonto(float ek)
+void Spieler::entferneSpielerKonto(float &ek)
 {
 
 	_Konto -= ek;
 }
-void Spieler::setzeSpielerLVL(unsigned short int lvl)
+void Spieler::setzeSpielerLVL(unsigned short int &lvl)
 {
 
 	_LVL += lvl;

@@ -19,16 +19,16 @@ public:
 
 	//Spieler Konto lesen und schreiben
 	float holeSpielerKonto() { return _Konto; };
-	void setzeSpielerKonto(float k);
-	void entferneSpielerKonto(float ek);
+	void setzeSpielerKonto(float &k);
+	void entferneSpielerKonto(float &ek);
 
 	//Spieler XP lesen und schreiben
 	float holeSpielerXP() { return _XP; };
-	void setzeSpielerXP(float xp);
+	void setzeSpielerXP(float &xp);
 
 	//Spieler LVL lesen und schreiben
 	float holeSpielerLVL() { return _LVL; };
-	void setzeSpielerLVL(unsigned short int lvl);
+	void setzeSpielerLVL(unsigned short int &lvl);
 
 	~Spieler();
 private:
