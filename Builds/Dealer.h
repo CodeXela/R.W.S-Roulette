@@ -9,8 +9,10 @@ public:
 	int RolltKugel();
 
 	~Dealer();
-
+	
 private:
 	
+
+
 };
 

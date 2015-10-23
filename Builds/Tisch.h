@@ -14,7 +14,7 @@ public:
 
 	
 
-	void InitTisch(bool rundeGewonnen, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, int gespielteSpiele);
+	void InitTisch(bool rundeGewonnen, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, int gespielteSpiele, float setzeAufRot);
 
 	void SetWindow(int width,int high);
 	void coutc(int color, char* output);
@@ -35,6 +35,8 @@ private:
 
 	double _Mindesteinsatz=0.2f;
 
+	int _dealerKugel=0;
+
 	bool _bleibtSchwarz;
 	bool _bleibtRot;
 	bool _RundeGewonnen;
@@ -42,8 +44,8 @@ private:
 	unsigned long int _RotAuswahl;
 	unsigned long int _SchwarzAuswahl;
 
-	unsigned long int _setzeAufRot;
-	unsigned long int _setzeAufSchwarz;
+	float _setzeAufRot;
+	float _setzeAufSchwarz;
 
 	float _verlorenAufRot;
 	float _verlorenAufSchwarz;
@@ -55,8 +57,8 @@ private:
 	CasinoBank _casinoBank;
 
 
-	int _Width;
-	int _Height;
+	//int _Width;
+	//int _Height;
 
 
 };
