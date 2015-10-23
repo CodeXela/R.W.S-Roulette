@@ -15,7 +15,7 @@ Ziele:
 	Einfache Chancen  		1 : 1
 	Dutzende, Kolonnen  	2 : 1
 	Transversale simple 	5 : 1
-	Carré					8 : 1
+	Carré 					8 : 1
 	Transversale pleine    11 : 1
 	Cheval 				   17 : 1
 	Plein  				   35 : 1
