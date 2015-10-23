@@ -20,12 +20,22 @@ Ziele:
 	Cheval 				   17 : 1
 	Plein  				   35 : 1
 
- 2.Statistik und Auswertung.
+ 2.Statistik und Auswertung:
+	
+	Geldmittel Gesamtübersicht
+	Geldmittel Verluste und Gewinne
+	
+	Spiele Gespielt
+	Spiele Verloren und Gewonnen
+	
 
- 3.Automatisches Spielen.
-
- 4.Single & Multiplayer in ASCII Style. 
+ 3.Automatisches Spielen:
  
+	future dev.
+
+ 4.Single & Multiplayer in ASCII Style: 
+ 
+	future dev.
  
  Aktuelle version: 0.101
  Datum: 24.10.2015
