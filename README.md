@@ -5,12 +5,20 @@ Anregungen und Hilfestellungen sind erwünscht.
 Zum Projekt:
 
 "Roulette Wahrscheinlichkeits Simulator" 
+ Aktuelle version: 0.101
+ Datum: 24.10.2015
 
 Ziele:
 
- 0.Grundgerüst . . . 
+ 0.Grundgerüst (UnderConstruction):
+	
+	Basic Framework
+	Basic Menue
 
- 1.Die Berechnung der Wahrscheinlichkeit beim setzen auf die verschiedenen Wettarten: 
+	Basic Client
+	Basic Server
+
+ 1.Die Berechnung der Wahrscheinlichkeit beim setzen auf die verschiedenen Wettarten (future development): 
 
 	Einfache Chancen  		1 : 1
 	Dutzende, Kolonnen  	2 : 1
@@ -20,7 +28,7 @@ Ziele:
 	Cheval 				   17 : 1
 	Plein  				   35 : 1
 
- 2.Statistik und Auswertung:
+ 2.Statistik und Auswertung (future development):
 	
 	Geldmittel Gesamtübersicht
 	Geldmittel Verluste und Gewinne
@@ -29,13 +37,14 @@ Ziele:
 	Spiele Verloren und Gewonnen
 	
 
- 3.Automatisches Spielen:
+ 3.Automatisches Spielen (future development):
  
-	future dev.
+	Advanced Framework
+	Advanced Menue
+		
 
- 4.Single & Multiplayer in ASCII Style: 
+ 4.Single & Multiplayer in ASCII Style (future development): 
  
-	future dev.
+	Advanced Client
+	Advanced Server
  
- Aktuelle version: 0.101
- Datum: 24.10.2015
