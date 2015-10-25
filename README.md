@@ -4,9 +4,9 @@ Anregungen und Hilfestellungen sind erwünscht.
 
 Zum Projekt:
 
-"Roulette Wahrscheinlichkeits Simulator" 
- Aktuelle version: 0.101
- Datum: 24.10.2015
+	Roulette Wahrscheinlichkeits Simulator 
+	Aktuelle version: 0.102
+	Datum: 25.10.2015
 
 Ziele:
 
