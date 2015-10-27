@@ -14,10 +14,11 @@ public:
 
 	
 
-	void InitTisch(bool rundeGewonnen, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, int gespielteSpiele, float setzeAufRot);
+	void InitTisch(bool rundeGewonnen, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz);
 
 	void SetWindow(int width,int high);
-	void coutc(int color, char* output);
+
+
 
 	void Print();
 
