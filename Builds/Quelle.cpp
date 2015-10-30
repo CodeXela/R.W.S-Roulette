@@ -14,14 +14,12 @@ int main()
 {
 	
 
-	Tisch T1;
-	system("CLS");
-	T1.Print();
+	Tisch *T1 = new Tisch();
 
+	T1->spieleSpiel();
 
+	delete T1;
 
-
-	getchar();
 	return 0;
 }
 
