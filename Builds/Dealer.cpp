@@ -21,7 +21,7 @@ Dealer::~Dealer()
 
 int Dealer::RolltKugel()
 {
-	static default_random_engine zufallGenerator(time(NULL));
+	default_random_engine zufallGenerator(time(NULL));
 	uniform_int_distribution<int> zufallWurf(0, 36);
 
 	/*PlaySound(TEXT("roulette_wheel.wav"), NULL, SND_SYNC);*///Spiele Sound bevor ausgabe

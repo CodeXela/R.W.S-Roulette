@@ -26,7 +26,7 @@ Tisch::Tisch()
 
 	InitTisch(false,false,false,false,0.0f,0.0f,0,0.0f,0.0f,0.0f);//Statistik startwerte (MERKE*ersetzen mit eingabe)
 	
-	_spieler.initSpieler("NONAME",100.0f,0.0f,0);// Spieler startwerte (MERKE*ersetzen mit eingabe)
+	_spieler.initSpieler("Temak",100.0f,0.0f,0);// Spieler startwerte (MERKE*ersetzen mit eingabe)
 
 	_casinoBank.initCB(1000000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
 	
@@ -43,11 +43,11 @@ Tisch::~Tisch()
 	
 
 }
-void Tisch::InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz, float lvlCap)
+void Tisch::InitTisch(bool rundeGewonnen, bool rundeVerloren, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz, float lvlCap)
 {
 
 	_RundeGewonnen = rundeGewonnen;
-	_Richtig = richtig;
+	_RundeVerloren = rundeVerloren;
 
 	_bleibtRot = bleibtRot;
 	_bleibtSchwarz = bleibtSchwarz;
@@ -67,21 +67,17 @@ void Tisch::InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool ble
 
 void Tisch::Print()
 {
-	Navigation Navigon = MAIN_MENU;
-	unsigned short int optionen = Navigon;
-
-	Steuerung Setzen = MENUE_SETZEN;
-	unsigned short int setzen = Setzen;
-
+	
 	unsigned short int kugelgefallen = 0;
-	static int anzahl = 8;
 
 	int *rot = new int[18] { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
 	int *schwarz = new int[18] { 2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35 };
-	
-	char *name = new char[anzahl];
-	
-	
+
+	Navigation Navigon = MAIN_MENU;
+	unsigned short int optionen = Navigon;
+
+	Steuerung Setzen=MENUE_SETZEN;
+	unsigned short int setzen = Setzen;
 
 	
 	system("COLOR F0");
@@ -92,24 +88,6 @@ void Tisch::Print()
 		{
 
 		case MAIN_MENU:
-		
-			while (_Richtig!=true)
-			{
-				printf("\n\n\n\n\nBitte Spieler Name mit Max.8 zeichen eingeben:");
-				cin >> name;
-				if (cin.fail())
-				{
-					printf("Deine eingabe ist zu lang");
-					cin.clear();
-					cin.ignore(CHAR_MAX, '\n');//fix für doppelte ausgabe bug
-					getchar();
-					system("CLS");
-					_Richtig = false;
-				}
-				_Richtig = true;
-			}
-			_spieler.setzeSpielerName(name);
-
 			printf("%s\n",string(95,'#').c_str());
 			cout << "                                 "; printf("RWS v0.102\n\n\n\n\n");
 			printf("                                 (1)Single Player\n                                 (2)AI Player\n                                 (3)Option\n                                 (4)Exit\n");
@@ -130,11 +108,13 @@ void Tisch::Print()
 
 
 		case SINGLE_PLAYER: //TO DO Darstellung auf funktion reduzieren
+
 			
+
 			//printf("%d",_dealer.RolltKugel());//Dealer Sound und Zahlausgabe (Test)
-			system("CLS");
+			
 			printf("%s\n", string(95, '#').c_str());
-			cout <<"  Spieler Name:  " << _spieler.holeSpielerName()<<"  LVL: "<<_spieler.holeSpielerLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
+			cout <<"  Spieler Name:       " << _spieler.holeSpielerName()<<"  LVL: "<<_spieler.holeSpielerLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
 			printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeSpielerKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
 			printf("  XP Fortschrit:   %0.1f    %0.2f Prozent                                                                      \n",_spieler.holeSpielerXP() , _lvlCap);
 			printf("%s\n", string(95, '#').c_str());
@@ -195,9 +175,7 @@ void Tisch::Print()
 					kugelgefallen = _dealer.RolltKugel();
 					if (kugelgefallen == 0)
 					{
-
-										 
-						printf("%s\n%s|Die Kugel rollt auf`s Zero feld\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(),string(24, ' ').c_str(),string(24, ' ').c_str(), string(95, '#').c_str());
+						printf("###############################################################################################\n[------------------------|Die Kugel rollt auf`s Zero feld \n[-----------------------|Du hast diese Runde verloren !\n###############################################################################################", kugelgefallen);
 						_casinoBank.setzeBankKonto(_setzeAufRot);
 						_RundeGewonnen = false;
 						berechnungXpbeute();
@@ -209,7 +187,7 @@ void Tisch::Print()
 					{
 						if (kugelgefallen == rot[i])
 						{
-							printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+							printf("###############################################################################################\n[-----------------------|Die Kugel rollt aufs rote Feld mit der NR: %d\n[-----------------------|Du hast diese Runde Gewonnen !\n###############################################################################################", kugelgefallen);
 							_casinoBank.entferneBankKonto(_setzeAufRot);
 							_setzeAufRot = _setzeAufRot * 2;
 							_spieler.setzeSpielerKonto(_setzeAufRot);
@@ -222,7 +200,7 @@ void Tisch::Print()
 						}
 						else if (kugelgefallen == schwarz[i])
 						{
-							printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+							printf("###############################################################################################\n[-----------------------|Die Kugel rollt aufs schwarze Feld mit der Nr: %d\n[-----------------------|Du hast diese Runde verloren !\n###############################################################################################", kugelgefallen);
 							_casinoBank.setzeBankKonto(_setzeAufRot);
 							_RundeGewonnen = false;
 							berechnungXpbeute();
@@ -276,7 +254,7 @@ void Tisch::Print()
 
 					if (kugelgefallen == 0)
 					{
-						printf("%s\n%s|Die Kugel rollt auf`s Zero feld\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), string(24, ' ').c_str(), string(95, '#').c_str());
+						printf("Die Kugel rollt auf`s Zero feld: %d Du hast diese Runde verloren \n", kugelgefallen);
 						_casinoBank.setzeBankKonto(_setzeAufSchwarz);
 						_RundeGewonnen = false;
 						berechnungXpbeute();
@@ -288,7 +266,7 @@ void Tisch::Print()
 					{
 						if (kugelgefallen == schwarz[i])
 						{
-							printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+							printf("Die Kugel rollt aufs Schwarze Feld mit der NR: %d \n Gewonnen !", kugelgefallen);
 							_casinoBank.entferneBankKonto(_setzeAufSchwarz);
 							_setzeAufSchwarz = _setzeAufSchwarz * 2;
 							_spieler.setzeSpielerKonto(_setzeAufSchwarz);
@@ -301,7 +279,7 @@ void Tisch::Print()
 						}
 						else if (kugelgefallen == rot[i])
 						{
-							printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+							printf("Die Kugel rollt aufs Rote Feld mit der Nr: %d \n Du hast diese Runde verloren", kugelgefallen);
 							_casinoBank.setzeBankKonto(_setzeAufSchwarz);
 							_RundeGewonnen = false;
 							berechnungXpbeute();
@@ -361,7 +339,6 @@ void Tisch::Print()
 	} 
 	delete []rot;
 	delete []schwarz;
-	delete []name;
 }
 
 void Tisch::SetWindow(int Width, int Height) // Aufbau der Consolengröße
@@ -459,14 +436,14 @@ void Tisch::berechnungXpbeute()
 	if (_RundeGewonnen == false) {
 		Multiplikator = ((halteEinsatz* 10) /halteKonto);
 		xpanzahl = Multiplikator*halteEinsatz;
-		printf("%s|\n%s|XP Multi: %0.2f \n%s|XP erhalten: %0.1f \n",string(24, '*').c_str(), string(24, '*').c_str(),Multiplikator, string(24, '*').c_str(), xpanzahl, string(24, '*').c_str());
+		printf("\n[-----------------------|---|---|---|---|---|---|---\n[-----------------------|XP Multi: %0.2f \n[-----------------------|XP erhalten: %0.1f \n",Multiplikator, xpanzahl);
 		getchar();
 	}
 	else if(_RundeGewonnen == true) {
 		Multiplikator = ((halteEinsatz * 10) /halteKonto);
 		xpBonus = Multiplikator*0.2f;
 		xpanzahl = (Multiplikator + xpBonus) * halteEinsatz;
-		printf("%s|\n%s|XPMulti: %0.2f \n%s|XP erhalten: %0.1f \n%s|BonusMulti: %0.1f \n", string(24, '*').c_str(), string(24, '*').c_str(),Multiplikator, string(24, '*').c_str(),xpanzahl, string(24, '*').c_str(),xpBonus, string(24, '*').c_str());
+		printf("\n[-----------------------|---|---|---|---|---|---|---\n[-----------------------|XPMulti: %0.2f \n[-----------------------|XP erhalten: %0.1f \n[-----------------------|BonusMulti: %0.1f \n",Multiplikator,xpanzahl,xpBonus);
 		getchar();
 	}
 }
