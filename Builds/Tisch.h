@@ -13,17 +13,14 @@ public:
 	Tisch();
 
 	void spieleSpiel();
-	
-	void prüfeLVLCap(float lvlCapP);
-	void berechnungXpbeute();
-	void InitTisch(bool rundeGewonnen, bool rundeVerloren , bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz, float lvlCap);
-	
-	
 
 	~Tisch();
 
 private:
 
+	void InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz, float lvlCap);
+	void berechnungXpbeute();
+	void prüfeLVLCap(float lvlCapP);
 	void Speichern();
 	/*void Laden(Spieler Sp,CasinoBank CB);*/
 	void Print();
@@ -47,7 +44,7 @@ private:
 	bool _bleibtSchwarz;
 	bool _bleibtRot;
 	bool _RundeGewonnen;
-	bool _RundeVerloren;
+	bool _Richtig;
 	//Rot & Schwarz entscheidung
 	unsigned long int _RotAuswahl;
 	unsigned long int _SchwarzAuswahl;
@@ -57,9 +54,11 @@ private:
 	//Verluste
 	float _verlorenAufRot;
 	float _verlorenAufSchwarz;
-	//Match counter
-	unsigned short int _gespielteSpiele;
-
+	//Match Statistic
+	unsigned long int _gespielteSpiele;
+	unsigned long int _zahlRot;
+	unsigned long int _zahlSchwarz;
+	unsigned long int _zahlZero;
 	float _lvlCap;
 
 	Spieler _spieler;
