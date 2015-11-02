@@ -33,6 +33,12 @@ public:
 	~Spieler();
 private:
 
+
+
+
+
+
+
 	string _spielerName;
 
 	float _Konto;

@@ -144,7 +144,7 @@ void Spieler::setzeSpielerXP(float &xp)
 }
 void Spieler::setzeSpielerName(string SN)
 {
-
+	
 	_spielerName = SN;
 
 }
