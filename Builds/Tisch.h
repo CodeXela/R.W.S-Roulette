@@ -13,14 +13,14 @@ public:
 	Tisch();
 
 	void spieleSpiel();
-
+	void prüfeLVLCap(float lvlCapP);
 	~Tisch();
 
 private:
 
 	void InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz, float lvlCap);
 	void berechnungXpbeute();
-	void prüfeLVLCap(float lvlCapP);
+	
 	void Speichern();
 	/*void Laden(Spieler Sp,CasinoBank CB);*/
 	void Print();
@@ -37,7 +37,7 @@ private:
 	float halteEinsatz = 0.0f;
 	float halteKonto = 0.0f;
 	float Multiplikator = 0.0f;
-	int _dealerKugel=0;
+	
 	
 
 	//Folgeentscheidung und Sieg
@@ -46,8 +46,9 @@ private:
 	bool _RundeGewonnen;
 	bool _Richtig;
 	//Rot & Schwarz entscheidung
-	unsigned long int _RotAuswahl;
-	unsigned long int _SchwarzAuswahl;
+	string _auswahlWahl="KEINE";
+
+	string _SchwarzAuswahl ="SCHWARZ";
 	//Einsätze
 	float _setzeAufRot;
 	float _setzeAufSchwarz;
@@ -55,10 +56,10 @@ private:
 	float _verlorenAufRot;
 	float _verlorenAufSchwarz;
 	//Match Statistic
-	unsigned long int _gespielteSpiele;
-	unsigned long int _zahlRot;
-	unsigned long int _zahlSchwarz;
-	unsigned long int _zahlZero;
+	unsigned long int _gespielteSpiele=0;
+	unsigned long int _zahlRot=0;
+	unsigned long int _zahlSchwarz=0;
+	unsigned long int _zahlZero=0;
 	float _lvlCap;
 
 	Spieler _spieler;
@@ -66,8 +67,8 @@ private:
 	CasinoBank _casinoBank;
 
 
-	int _Width;
-	int _Height;
+	//int _Width;
+	//int _Height;
 
 
 };

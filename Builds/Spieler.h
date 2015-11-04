@@ -7,11 +7,11 @@ using namespace std;
 class Spieler
 {
 public:
+
 	Spieler();
 	
-	
 	//Init für Spieler
-	void initSpieler(string spielerName, float konto,float XP, unsigned short int Lvl);
+	void initSpieler(string spielerName, float konto,float XP, unsigned short int Lvl, float lvlCapp);
 
 	//Spieler Name lesen und schreiben
 	string holeSpielerName() { return _spielerName; };
@@ -33,11 +33,7 @@ public:
 	~Spieler();
 private:
 
-
-
-
-
-
+	void pruefeLVLCAp();
 
 	string _spielerName;
 
@@ -46,6 +42,8 @@ private:
 	float  _XP;
 
 	unsigned short int _LVL;
+
+	float _lvlCapP;
 
 	
 
