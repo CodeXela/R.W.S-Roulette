@@ -18,9 +18,13 @@ Spieler::~Spieler()
 void Spieler::initSpieler(string spielerName,float konto,float XP, unsigned short int Lvl, float lvlCapp)
 {
 	_spielerName = spielerName;
+
 	_Konto = konto;
+
 	_XP = XP;
+
 	_LVL = Lvl;
+
 	_lvlCapP = lvlCapp;
 }
 void Spieler::setzeSpielerXP(float &xp)
@@ -30,7 +34,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 	while (_XP >= _lvlCapP ) {
 
-
+		
 		pruefeLVLCAp();
 		
 		if (_LVL >=0  && _LVL <= 5  && _XP >= 1000.0f)
@@ -43,14 +47,16 @@ void Spieler::setzeSpielerXP(float &xp)
 			
 		}
 		if (_LVL >=6  && _LVL <= 10 && _XP >= 2000.0f) {
+
 			_XP -= 2000.0f;
 			_LVL++;
 			system("CLS");
-			printf("\nAnfänger Stufe %d erreicht", _LVL);
+			printf("\nAnfaenger Stufe %d erreicht", _LVL);
 			
 			
 		}
 		if (_LVL >=11 && _LVL <= 15 && _XP >= 3000.0f) {
+
 			_XP -= 3000.0f;
 			_LVL++;
 			system("CLS");
@@ -59,15 +65,17 @@ void Spieler::setzeSpielerXP(float &xp)
 			
 		}
 		if (_LVL >=16 && _LVL <= 20 && _XP >= 4000.0f) {
+
 			_XP -= 4000.0f;
 			_LVL++;
 			system("CLS");
-			printf("\nMitspieler Stufe %d erreicht", _LVL);
+			printf("\nKönner Stufe %d erreicht", _LVL);
 			
 			
 
 		}
 		if (_LVL >=21 && _LVL <= 25 && _XP >= 5000.0f) {
+
 			_XP -= 5000.0f;
 			_LVL++;
 			system("CLS");
@@ -77,6 +85,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >=26 && _LVL <= 30 && _XP >= 6000.0f) {
+
 			_XP -= 6000.0f;
 			_LVL++;
 			system("CLS");
@@ -86,6 +95,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >=31 && _LVL <= 35 && _XP >= 7000.0f) {
+
 			_XP -= 7000.0f;
 			_LVL++;
 			system("CLS");
@@ -95,6 +105,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >=36 && _LVL <= 40 && _XP >= 8000.0f) {
+
 			_XP -= 8000.0f;
 			_LVL++;
 			system("CLS");
@@ -104,6 +115,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >=41 && _LVL <= 45 && _XP >= 9000.0f) {
+
 			_XP -= 9000.0f;
 			_LVL++;
 			system("CLS");
@@ -113,6 +125,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >=46 && _LVL <= 50 && _XP >= 10000.0f) {
+
 			_XP -= 10000.0f;
 			_LVL++;
 			system("CLS");
@@ -122,6 +135,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >=51 && _LVL <= 55 && _XP >= 11000.0f) {
+
 			_XP -= 11000.0f;
 			_LVL++;
 			system("CLS");
@@ -131,6 +145,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >=56 && _LVL <= 60 && _XP >= 12000.0f) {
+
 			_XP -= 12000.0f;
 			_LVL++;
 			system("CLS");
@@ -139,6 +154,7 @@ void Spieler::setzeSpielerXP(float &xp)
 			
 		}
 		if (_LVL >=61 && _LVL <= 65 && _XP >= 13000.0f) {
+
 			_XP -= 13000.0f;
 			_LVL++;
 			system("CLS");
@@ -147,6 +163,7 @@ void Spieler::setzeSpielerXP(float &xp)
 			
 		}
 		if (_LVL >=66 && _LVL <= 70 && _XP >= 14000.0f) {
+
 			_XP -= 14000.0f;
 			_LVL++;
 			system("CLS");
@@ -155,6 +172,7 @@ void Spieler::setzeSpielerXP(float &xp)
 			
 		}
 		if (_LVL >=71 && _LVL <= 75 && _XP >= 15000.0f) {
+
 			_XP -= 15000.0f;
 			_LVL++;
 			system("CLS");
@@ -163,6 +181,7 @@ void Spieler::setzeSpielerXP(float &xp)
 			
 		}
 		if (_LVL >=76 && _LVL <= 80 && _XP >= 16000.0f) {
+
 			_XP -= 16000.0f;
 			_LVL++;
 			system("CLS");
@@ -171,6 +190,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >= 81 && _LVL <= 85 && _XP >= 17000.0f) {
+
 			_XP -= 17000.0f;
 			_LVL++;
 			system("CLS");
@@ -179,6 +199,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >= 86 && _LVL <= 90 && _XP >= 18000.0f) {
+
 			_XP -= 17000.0f;
 			_LVL++;
 			system("CLS");
@@ -187,6 +208,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >= 91 && _LVL <= 95 && _XP >= 19000.0f) {
+
 			_XP -= 16000.0f;
 			_LVL++;
 			system("CLS");
@@ -195,6 +217,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 		}
 		if (_LVL >= 96 && _LVL <= 100 && _XP >= 20000.0f) {
+
 			_XP -= 20000.0f;
 			_LVL++;
 			system("CLS");
@@ -202,7 +225,7 @@ void Spieler::setzeSpielerXP(float &xp)
 
 
 		}
-		
+		getchar();
 	}
 }
 void Spieler::setzeSpielerName(string SN)
