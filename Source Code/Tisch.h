@@ -4,6 +4,7 @@
 #include "CasinoBank.h"
 #include "Dealer.h"
 #include "Spieler.h"
+#include "AIPlayer.h"
 
 
 class Tisch
@@ -19,7 +20,7 @@ public:
 
 private:
 
-	void InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz,float verlorenAufZahl, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz,float setzeAufZahl, float lvlCap);
+	void InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, float gewonnenAufRot, float gewonnenAufSchwarz, float verlorenAufRot, float verlorenAufSchwarz,float verlorenAufZahl, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz,float setzeAufZahl, float lvlCap);
 	
 	void berechnungXpbeute();
 
@@ -45,6 +46,8 @@ private:
 	void setzeAufSchwarzprint();
 
 	void setzeAufZahlprint();
+
+	void AIMenuePrint();
 
 	void pruefeCinEingabe();
 	
@@ -79,12 +82,24 @@ private:
 	//Rot & Schwarz entscheidung
 	string _auswahlWahl="KEINE";
 
+	char _farbe = 0;
+
+	char _Runde = 'A';
+
 	//Einsätze
 	float _setzeAufRot;
 
 	float _setzeAufSchwarz;
 
 	float _setzeAufZahl;
+
+	float _einsatzAIP=0.0f;
+
+	//gewinne
+
+	float _gewonnenAufRot;
+
+	float _gewonnenAufSchwarz;
 
 	//Verluste
 	float _verlorenAufRot;
@@ -94,7 +109,7 @@ private:
 	float _verlorenAufZahl;
 
 	//Match Statistic
-	unsigned long int _gespielteSpiele=0;
+	unsigned long int _gespielteSpiele;
 
 	unsigned long int _zahlRot=0;
 
@@ -104,10 +119,16 @@ private:
 
 	unsigned short int _ZahlAuswahl=0;
 
+
+
 	float _lvlCap;
 
 	Spieler _spieler;
+
+	AIPlayer _aiPlayer;
+	
 	Dealer _dealer;
+
 	CasinoBank _casinoBank;
 
 

@@ -21,7 +21,7 @@ Dealer::~Dealer()
 
 int Dealer::RolltKugel()
 {
-	default_random_engine zufallGenerator(time(NULL));
+	static default_random_engine zufallGenerator(time(NULL));
 
 	uniform_int_distribution<int> zufallWurf(0, 36);
 

@@ -31,10 +31,10 @@ public:
 	void setzeSpielerXP(float &xp);
 
 	//Spieler LVL lesen und schreiben
-	float holeSpielerLVL() { return _LVL; };
+	int holeSpielerLVL() { return _LVL; };
 
 	void setzeSpielerLVL(unsigned short int &lvl);
-
+	
 	~Spieler();
 
 private:

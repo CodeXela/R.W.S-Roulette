@@ -30,13 +30,13 @@ Tisch::Tisch()
 	
 	SetWindow(95,40);//setze Consolengröße fest
 
-	InitTisch(false,false,false,false,0.0f,0.0f,0,0.0f,0.0f,0.0f,0.0f,0.0f);//Statistik startwerte (MERKE*ersetzen mit eingabe)
+	InitTisch(false,false,false,false,0.0f,0.0f,0.0f,0.0f,0,0.0f,0.0f,0.0f,0.0f,0.0f);//Statistik startwerte (MERKE*ersetzen mit eingabe)
 	
 	_spieler.initSpieler("NONAME",100.0f,0.0f,0,0.0f);// Spieler startwerte (MERKE*ersetzen mit eingabe)
 
 	_casinoBank.initCB(1000000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
 	
-	
+	_aiPlayer.initAIPlayer(0.0f, 0.0f, 0, 0.0f);
 }
 void Tisch::spieleSpiel()
 {
@@ -49,7 +49,7 @@ Tisch::~Tisch()
 	
 
 }
-void Tisch::InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, float verlorenAufRot, float verlorenAufSchwarz, float verlorenAufZahl, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz,float setzeAufZahl, float lvlCap)
+void Tisch::InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, float gewonnenAufRot, float gewonnenAufSchwarz, float verlorenAufRot, float verlorenAufSchwarz, float verlorenAufZahl, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz,float setzeAufZahl, float lvlCap)
 {
 
 	_RundeGewonnen = rundeGewonnen;
@@ -130,6 +130,8 @@ void Tisch::Print()
 			break;
 
 		case AI_PLAYER:
+
+			AIMenuePrint();
 
 			break;
 
@@ -315,7 +317,7 @@ void Tisch::berechnungXpbeute()
 		printf("%s|RED: %d Black: %d Zero: %d\n\n", string(24, '*').c_str(), _zahlRot, _zahlSchwarz, _zahlZero);
 		//----------------------------------------------------------------------------------Menue
 
-		getchar();
+
 	}
 	else if(_RundeGewonnen == true) {
 
@@ -331,14 +333,16 @@ void Tisch::berechnungXpbeute()
 		printf("%s|RED: %d Black: %d Zero: %d \n\n", string(24, '*').c_str(),_zahlRot,_zahlSchwarz,_zahlZero);
 		//----------------------------------------------------------------------------------Menue
 
-		getchar();
+
 	}
 }
 
 void Tisch::MenueAbfrageprint()
 {
+
 	while (_Richtig != true)// TO DO 05.11<---------------------------------------<<<<
 	{
+
 		printf("\n\n\n\n\n             Bitte Spieler Name eingeben:");
 		cin >> name;
 
@@ -889,6 +893,282 @@ void Tisch::setzeAufZahlprint()
 		return;
 	}
 }
+void Tisch::AIMenuePrint()
+{
+
+	system("CLS");
+
+	//----------------------------------------------------------------------------------Menue
+
+	printf("%s\n", string(95, '#').c_str());
+	printf("\n\nMit wie viel Geld starten wir? : "); cin >> _einsatzAIP; _aiPlayer.setzeAIPlayerKonto(_einsatzAIP);
+	printf("\nDer starteinsatz wir beim verlust multipliziert nach dem Martingalprinzip.");
+	printf("\nWie gross sollen der Starteinsatz sein? :"); cin >> _Mindesteinsatz;
+	printf("\nMit welcher Farbe starten wir?: (R)ot oder (S)chwarz"); cin >> _farbe;
+
+	//----------------------------------------------------------------------------------Menue
+	_setzeAufRot = _Mindesteinsatz;
+	_setzeAufSchwarz = _Mindesteinsatz;
+	cin.clear();
+	cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
+	//cin.ignore(CHAR_MAX, '\n');
+
+	switch (_farbe)
+
+			case 'r':
+			case 'R':
+
+				while (_aiPlayer.holeAIPlayerKonto() >= _Mindesteinsatz)
+				{
+
+					if (_Runde == 'A')//doppeltgemoppelt
+					{
+						
+						printf("Setze auf Rot");
+						halteKonto = _aiPlayer.holeAIPlayerKonto();
+
+						halteEinsatz = _Mindesteinsatz;
+
+						
+
+						_gespielteSpiele++;
+
+						_auswahlWahl = "ROT";
+
+						_aiPlayer.entferneAIPlayerKonto(_Mindesteinsatz);
+
+						kugelgefallen = _dealer.RolltKugel();
+
+						if (kugelgefallen == 0)
+						{
+
+							_zahlZero++;
+
+							//----------------------------------------------------------------------------------Menue
+							printf("%s\n%s|Die Kugel rollt auf`s Zero feld\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), string(24, ' ').c_str(), string(95, '#').c_str());
+							//----------------------------------------------------------------------------------Menue
+
+							_casinoBank.setzeBankKonto(_Mindesteinsatz);
+
+							_verlorenAufRot += _Mindesteinsatz;
+
+							_RundeGewonnen = false;
+
+							berechnungXpbeute();
+
+							_aiPlayer.setzeAIPlayerXP(xpanzahl);//XP und LVL Test
+
+							prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+
+							_Mindesteinsatz = _Mindesteinsatz * 2;
+
+							if (_Mindesteinsatz > _aiPlayer.holeAIPlayerKonto())
+							{
+
+								_Mindesteinsatz = _setzeAufRot;
+
+							}
+
+						}
+						for (int i = 0; i < 18; i++)
+						{
+							if (kugelgefallen == rot[i])
+							{
+
+								_zahlRot++;
+
+								//----------------------------------------------------------------------------------Menue
+								printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+								//----------------------------------------------------------------------------------Menue
+
+								_casinoBank.entferneBankKonto(_Mindesteinsatz);
+
+								_Mindesteinsatz = _Mindesteinsatz * 2;
+
+								_gewonnenAufRot += _Mindesteinsatz;
+
+								_aiPlayer.setzeAIPlayerKonto(_Mindesteinsatz);
+
+								_RundeGewonnen = true;
+
+								berechnungXpbeute();
+
+								_aiPlayer.setzeAIPlayerXP(xpanzahl);//XP und LVL Test
+
+								prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+
+
+								_Mindesteinsatz = _setzeAufRot;
+
+
+							}
+							else if (kugelgefallen == schwarz[i])
+							{
+
+								_zahlSchwarz++;
+
+								//----------------------------------------------------------------------------------Menue
+								printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+								//----------------------------------------------------------------------------------Menue
+
+								_casinoBank.setzeBankKonto(_Mindesteinsatz);
+
+								_verlorenAufRot += _Mindesteinsatz;
+
+								_RundeGewonnen = false;
+
+								berechnungXpbeute();
+
+								_aiPlayer.setzeAIPlayerXP(xpanzahl);
+
+								prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+
+								_Mindesteinsatz = _Mindesteinsatz * 2;
+
+								
+
+								if (_Mindesteinsatz > _aiPlayer.holeAIPlayerKonto())
+								{
+
+									_Mindesteinsatz = _setzeAufRot;
+
+									
+
+								}
+								_Runde = 'B';
+							}
+
+						}
+
+					}
+					else if (_Runde == 'B')
+					{
+						printf("Setze auf Schwarz");
+
+						halteKonto = _aiPlayer.holeAIPlayerKonto();
+
+						halteEinsatz = _Mindesteinsatz;
+
+						
+
+						_gespielteSpiele++;
+
+						_auswahlWahl = "SCHWARZ";
+
+						_aiPlayer.entferneAIPlayerKonto(_Mindesteinsatz);
+
+						kugelgefallen = _dealer.RolltKugel();
+
+						if (kugelgefallen == 0)
+						{
+
+							_zahlZero++;
+
+							//----------------------------------------------------------------------------------Menue
+							printf("%s\n%s|Die Kugel rollt auf`s Zero feld\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), string(24, ' ').c_str(), string(95, '#').c_str());
+							//----------------------------------------------------------------------------------Menue
+
+							_casinoBank.setzeBankKonto(_Mindesteinsatz);
+
+							_verlorenAufSchwarz += _Mindesteinsatz;
+
+							_RundeGewonnen = false;
+
+							berechnungXpbeute();
+
+							_aiPlayer.setzeAIPlayerXP(xpanzahl);//XP und LVL Test
+
+							prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+
+							_Mindesteinsatz = _Mindesteinsatz * 2;
+
+							if (_Mindesteinsatz > _aiPlayer.holeAIPlayerKonto())
+							{
+
+								_Mindesteinsatz = _setzeAufSchwarz;
+
+							}
+
+						}
+						for (int i = 0; i < 18; i++)
+						{
+							if (kugelgefallen == rot[i])
+							{
+
+								_zahlRot++;
+
+								//----------------------------------------------------------------------------------Menue
+								printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der NR: %d|\n%s|      Du hast diese Runde Verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+								//----------------------------------------------------------------------------------Menue
+
+								_casinoBank.entferneBankKonto(_Mindesteinsatz);
+
+								_verlorenAufSchwarz += _Mindesteinsatz;
+
+
+								_aiPlayer.setzeAIPlayerKonto(_Mindesteinsatz);
+
+								_RundeGewonnen = false;
+
+								berechnungXpbeute();
+
+								_aiPlayer.setzeAIPlayerXP(xpanzahl);//XP und LVL Test
+
+								prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+
+								_Mindesteinsatz = _Mindesteinsatz * 2;
+								
+
+								if (_Mindesteinsatz > _aiPlayer.holeAIPlayerKonto())
+								{
+
+									_Mindesteinsatz = _setzeAufSchwarz;
+
+									
+									
+								}
+								_Runde = 'A';
+							}
+							else if (kugelgefallen == schwarz[i])
+							{
+
+								_zahlSchwarz++;
+
+								//----------------------------------------------------------------------------------Menue
+								printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der Nr: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+								//----------------------------------------------------------------------------------Menue
+
+								_casinoBank.setzeBankKonto(_Mindesteinsatz);
+
+								_gewonnenAufSchwarz += _Mindesteinsatz*2;
+
+								_RundeGewonnen = true;
+
+								berechnungXpbeute();
+
+								_aiPlayer.setzeAIPlayerXP(xpanzahl);
+
+								prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+
+								_Mindesteinsatz = _setzeAufSchwarz;
+
+								
+
+							}
+
+
+
+						}
+
+					}
+					
+				}
+				printf("Halte fest");
+				getchar();
+}
+
+
+
 void Tisch::pruefeCinEingabe()
 {
 
