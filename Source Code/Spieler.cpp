@@ -1,48 +1,48 @@
-#include "Spieler.h"
+#include "Spieler.h" //hole spieler prototypen
 
 
 
-Spieler::Spieler()
+Spieler::Spieler()  //KonstruKtor (baut auf) wird am anfang gerufen
 {
 
 
 
 }
 
-Spieler::~Spieler()
+Spieler::~Spieler() //Dekonstrukture (baut zurück) meistenst beim beeenen
 {
 
 
 }
 
-void Spieler::initSpieler(string spielerName,float konto,float XP, unsigned short int Lvl, float lvlCapp)
+void Spieler::initSpieler(string spielerName,float konto,float XP, unsigned short int Lvl, float lvlCapp) //Inizialisiere variablen mit werten
 {
-	_spielerName = spielerName;
+	_spielerName = spielerName; // spielerName ist gleich private variable _spielerName
 
-	_Konto = konto;
+	_Konto = konto; // konto ist gleich private variable _Konto
 
-	_XP = XP;
+	_XP = XP; // xp ist gleich private variable _XP
 
-	_LVL = Lvl;
+	_LVL = Lvl; // Lvl ist gleich private variable _LVL
 
-	_lvlCapP = lvlCapp;
+	_lvlCapP = lvlCapp; // lvlCapp ist gleich private variable _lvlCapP
 }
-void Spieler::setzeSpielerXP(float &xp)
+void Spieler::setzeSpielerXP(float &xp) //vergebe spieler Ep nach gewinn mit & um direkt zu beschreiben
 {
 
-	_XP += xp;
+	_XP += xp; // xp ist gleich private variable _XP
 
-	while (_XP >= _lvlCapP ) {
+	while (_XP >= _lvlCapP ) { //schleife solange wie xp größer gleich lvlCap
 
 		
-		pruefeLVLCAp();
+		pruefeLVLCAp(); //prüfe ob Lvl cap erreicht ist
 		
-		if (_LVL >=0  && _LVL <= 5  && _XP >= 1000.0f)
+		if (_LVL >=0  && _LVL <= 5  && _XP >= 1000.0f) //wenn lvl größer oder gleich 0 und lvl kleiner oder gleich 5 und xp gößer oder gleich 1000 dann:
 		{
-			_XP -= 1000.0f;
-			_LVL++;
-			system("CLS");
-			printf("\nNeuling Stufe %d erreicht", _LVL);
+			_XP -= 1000.0f; //ziehe vom spieler die 1000 xp ab
+			_LVL++; // füge ein lvl hinzu
+			system("CLS"); //leere die bildschirmausgabe
+			printf("\nNeuling Stufe %d erreicht", _LVL); //schreibe welches lvl der spieler jetzt hat.
 			
 			
 		}
@@ -225,43 +225,43 @@ void Spieler::setzeSpielerXP(float &xp)
 
 
 		}
-		getchar();
+		getchar(); //warte auf tastatureingabe
 	}
 }
-void Spieler::setzeSpielerName(string SN)
+void Spieler::setzeSpielerName(string SN) // spieler name wird hier übergeben
 {
 	
-	_spielerName = SN;
+	_spielerName = SN; // spielername wird in die private variable eingetragen
 
 }
-void Spieler::setzeSpielerKonto(float &k)
+void Spieler::setzeSpielerKonto(float &k) //betrag wird übergeben um zu addieren
 {
 
-	_Konto += k;
+	_Konto += k; // betrag wird in die private variable dazuaddiert
 
 }
 
 void Spieler::entferneSpielerKonto(float &ek)
 {
 
-	_Konto -= ek;
+	_Konto -= ek; //betrag  wird in der privaten variable subrahiert
 }
 void Spieler::setzeSpielerLVL(unsigned short int &lvl)
 {
 
-	_LVL += lvl;
+	_LVL += lvl; // betrag wird in die private variable dazuaddiert
 
 }
-void Spieler::pruefeLVLCAp()
+void Spieler::pruefeLVLCAp() // überprüfe ob xp für lvl up bereit ist
 {
 
 	
 
 	
-		if		(holeSpielerLVL() >= 0  && holeSpielerLVL() <= 5)
+		if	(holeSpielerLVL() >= 0  && holeSpielerLVL() <= 5) //wenn  spieler lvl größer oder gleich 0 ist und spieler lvl kleiner oder gleich 5 ist:
 		{
 
-			_lvlCapP = 1000;
+			_lvlCapP = 1000; // LVL cap für lvl 1 ist 1000 exp punkte
 
 		}
 		else if (holeSpielerLVL() >= 6  && holeSpielerLVL() <= 10)

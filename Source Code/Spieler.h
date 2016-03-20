@@ -1,14 +1,14 @@
-#pragma once
+#pragma once //ersatf für ifdefine
 
 #include <string>
 
 using namespace std;
 
-class Spieler
+class Spieler // klasse spieler wird beschrieben
 {
 public:
 
-	Spieler();
+	Spieler(); //konstruktor
 	
 	//Init für Spieler
 	void initSpieler(string spielerName, float konto,float XP, unsigned short int Lvl, float lvlCapp);
@@ -35,21 +35,21 @@ public:
 
 	void setzeSpielerLVL(unsigned short int &lvl);
 	
-	~Spieler();
+	~Spieler();// Dekonstruktor
 
 private:
 
-	void pruefeLVLCAp();
+	void pruefeLVLCAp(); //Überpfrüfe ob lvl cap erreicht ist
 
-	string _spielerName;
+	string _spielerName; //Lege var fest für Name
 
-	float _Konto;
+	float _Konto; //Lege var fest für GeldKonto
 	
-	float  _XP;
+	float  _XP; //Lege var fest für Erfahrungspunkte
 
-	unsigned short int _LVL;
+	unsigned short int _LVL; //Lege var fest für LVL
 
-	float _lvlCapP;
+	float _lvlCapP; //Lege var fest für Lvl größe
 
 	
 
