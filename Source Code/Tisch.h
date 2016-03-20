@@ -1,11 +1,11 @@
 #pragma once
 
-
+//---------------------
 #include "CasinoBank.h"
-#include "Dealer.h"
-#include "Spieler.h"
+#include "Dealer.h"		//Binde alles ein was ich benutzen möchte
+#include "Spieler.h"	//Die Klasse Tisch übernimmt die hautverwaltung
 #include "AIPlayer.h"
-
+//---------------------
 
 class Tisch
 {
@@ -31,9 +31,9 @@ private:
 	/*void Laden(Spieler Sp,CasinoBank CB);*/
 
 
-	void Print();
+	void Print();//Gebe auf bildschirm alles aus
 
-	void SetWindow(int width, int high);
+	void SetWindow(int width, int high); //stellt die groeße der console ein
 
 
 	//print Menue
@@ -53,7 +53,7 @@ private:
 	
 private:
 
-
+	//Var für diverse berechnungen
 	const float _Prozent=100.0f;
 
 	float _Mindesteinsatz=0.2f;
@@ -135,10 +135,9 @@ private:
 	/*int _Width =0;
 	int _Height =0;*/
 
-	
-
 	unsigned short int kugelgefallen = 0;
 	const int anzahl = 8;
+	//Zahlen für Farben (zum testen über Heap)
 	int *rot = new int[18]{ 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
 	int *schwarz = new int[18]{ 2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35 };
 

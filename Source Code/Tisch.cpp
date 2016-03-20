@@ -13,19 +13,20 @@
 
 using namespace std;
 
-enum Navigation{MAIN_MENU=0, SINGLE_PLAYER, AI_PLAYER, OPTION, EXIT};
+enum Navigation{MAIN_MENU=0, SINGLE_PLAYER, AI_PLAYER, OPTION, EXIT}; // erstelle menue 1
 
-enum Steuerung{MENUE_SETZEN=0,SETZE_ROT,SETZE_SCHWARZ,SETZE_ZAHL, ZURUECK};
+enum Steuerung{MENUE_SETZEN=0,SETZE_ROT,SETZE_SCHWARZ,SETZE_ZAHL, ZURUECK}; // erstelle menue 2
 
-Navigation Navigon = MAIN_MENU;
+Navigation Navigon = MAIN_MENU; //Mache Objekt Navigation und setze menue auf case 0
 
-unsigned short int optionen = Navigon;
+unsigned short int optionen = Navigon; //erstelle eingabe var und setze das objekt navigon damit gleich
 
-Steuerung Setzen = MENUE_SETZEN;
+Steuerung Setzen = MENUE_SETZEN;//Mache Objekt Setzen und setze menue auf 0
 
-unsigned short int setzen = Setzen;
+unsigned short int setzen = Setzen; //erstelle eingabe var und setze das objekt Setzen damit gleich
 
-Tisch::Tisch()
+
+Tisch::Tisch()//Konstruktor der alle beim start mit daten befüllt
 {
 	
 	SetWindow(95,40);//setze Consolengröße fest
@@ -36,15 +37,15 @@ Tisch::Tisch()
 
 	_casinoBank.initCB(1000000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
 	
-	_aiPlayer.initAIPlayer(0.0f, 0.0f, 0, 0.0f);
+	_aiPlayer.initAIPlayer(0.0f, 0.0f, 0, 0.0f);// Aispieler wird aufgefüllt(MERKE*ersetzen mit eingabe)
 }
-void Tisch::spieleSpiel()
+void Tisch::spieleSpiel() //wird in der mainfunktion gerufen und startet das spiel
 {
 
-	Print();
+	Print();//Gibt das Menue usw. aus
 }
 
-Tisch::~Tisch()
+Tisch::~Tisch()//Dekonstruktor
 {
 	
 
