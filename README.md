@@ -1,6 +1,6 @@
 #  RGW Simulator
 
-Anregungen und Hilfestellungen sind erwünscht.
+Anregungen und Hilfestellungen sind erwuenscht.
 
 Zum Projekt:
 
@@ -10,10 +10,10 @@ Zum Projekt:
 
 Ziele:
 
- 0. Grundgerüst (UnderConstruction):
+ 0. Grundgeruest (UnderConstruction):
 	
 	Basic Framework
-	Basic Menü
+	Basic Menue
 
 	Basic Client
 	Basic Server
@@ -23,14 +23,14 @@ Ziele:
 	Einfache Chancen  		1 : 1  [Done]
 	Dutzende, Kolonnen  	2 : 1
 	Transversale simple 	5 : 1
-	Carré 					8 : 1
+	Carr� 					8 : 1
 	Transversale pleine    11 : 1
 	Cheval 				   17 : 1
 	Plein  				   35 : 1
 
  2. Statistik und Auswertung (Future Development):
 	
-	Geldmittel Gesamtübersicht
+	Geldmittel Gesamtuebersicht
 	Geldmittel, Verluste und Gewinne
 	
 	Spiele gespielt
