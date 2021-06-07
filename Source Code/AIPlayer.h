@@ -20,6 +20,7 @@ public:
 	void setzeAIPlayerKonto(float &aipKonto);
 	void entferneAIPlayerKonto(float &aipKontoE);
 	
+	
 
 	~AIPlayer();
 

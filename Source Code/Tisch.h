@@ -5,6 +5,8 @@
 #include "Dealer.h"		//Binde alles ein was ich benutzen möchte
 #include "Spieler.h"	//Die Klasse Tisch übernimmt die hautverwaltung
 #include "AIPlayer.h"
+
+#include <vector>
 //---------------------
 
 class Tisch
@@ -25,6 +27,8 @@ private:
 	void berechnungXpbeute();
 
 	void prüfeLVLCap(float lvlCapP);
+
+	void legeDatenAb(string runde,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf);
 
 	void Speichern();
 
@@ -49,7 +53,16 @@ private:
 
 	void AIMenuePrint();
 
-	void pruefeCinEingabe();
+	void printAiMainMenu();
+
+	void cleanupAIPlayer();
+
+	void printXpBerechnungGewinn();
+
+	void printXpBerechnungVerlust();
+
+	void printGewinnVerlust(unsigned short int c);
+
 	
 private:
 
@@ -57,6 +70,8 @@ private:
 	const float _Prozent=100.0f;
 
 	float _Mindesteinsatz=0.2f;
+
+	float _MultiCap = 0.0f;
 
 	float xpanzahl = 0.0f;
 
@@ -120,7 +135,6 @@ private:
 	unsigned short int _ZahlAuswahl=0;
 
 
-
 	float _lvlCap;
 
 	Spieler _spieler;
@@ -131,6 +145,7 @@ private:
 
 	CasinoBank _casinoBank;
 
+	std::vector<string> _vectorDaten;
 
 	/*int _Width =0;
 	int _Height =0;*/
