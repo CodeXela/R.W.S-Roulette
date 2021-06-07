@@ -5,8 +5,8 @@ Anregungen und Hilfestellungen sind erwuenscht.
 Zum Projekt:
 
 	Roulette Wahrscheinlichkeitssimulator 
-	Aktuelle Version: 0.103
-	Datum: 04.11.2015
+	Aktuelle Version: 0.104
+	Datum: 07.06.2021
 
 Ziele:
 
