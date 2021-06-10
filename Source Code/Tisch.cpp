@@ -33,15 +33,15 @@ Tisch::Tisch()//Konstruktor der alle beim start mit daten befüllt
 	
 	SetWindow(95,40);//setze Consolengröße fest
 
-	InitTisch(false,false,false,false,0.0f,0.0f,0.0f,0.0f,0,0.0f,0.0f,0.0f,0.0f,0.0f);//Statistik startwerte (MERKE*ersetzen mit eingabe)
+	InitTisch(false,false,false,false,0.0f,0.0f,0.0f,0.0f,0.0f,0,0.0f,0.0f,0.0f,0.0f);//Statistik startwerte (MERKE*ersetzen mit eingabe)
 	
 	_spieler.initSpieler("NONAME",1000.0f,0.0f,0,0.0f);// Spieler startwerte (MERKE*ersetzen mit eingabe)
 
-	_casinoBank.initCB(1000000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
+	_casinoBank.initCB(1000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
 	
 	_aiPlayer.initAIPlayer(0.0f, 0.0f, 0, 0.0f);// Aispieler wird aufgefüllt(MERKE*ersetzen mit eingabe)
 
-	_vectorDaten = {"Statistic"};
+	
 }
 void Tisch::spieleSpiel() //wird in der mainfunktion gerufen und startet das spiel
 {
@@ -190,21 +190,23 @@ void Tisch::Speichern()
 {
 	ofstream FILE;
 
-	FILE.open("saveSpieler.txt");
+	FILE.open("saveSpieler.csv");
 
 	if (FILE.fail())
 	{
-		perror("saveSpieler.txt");
+		perror("saveSpieler.csv");
 
 		
 	}
 	if (FILE.is_open())
 	{
 
-		FILE << std::fixed  << _spieler.holeSpielerName() << endl;
+		/*FILE << std::fixed  << _spieler.holeSpielerName() << endl;
 		FILE << std::fixed << std::setprecision(1) << _spieler.holeSpielerKonto() << endl;
 		FILE << std::fixed << std::setprecision(1) << _spieler.holeSpielerXP() << endl;
-		FILE << std::fixed << std::setprecision(1) << _casinoBank.holeBank() << endl;
+		FILE << std::fixed << std::setprecision(1) << _casinoBank.holeBank() << endl;*/
+
+		FILE << "\nRunde , StartKonto , EndKonto , Einsatz , Farbe , CasinoKonto, Gewonnen , Kugel , Gewinn/Verlust" << endl;
 
 		for (string n : _vectorDaten)
 		{
@@ -301,10 +303,10 @@ void Tisch::prüfeLVLCap(float lvlCapP)
 	}
 
 }
-void Tisch::legeDatenAb(string runde,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf)
+void Tisch::legeDatenAb(string runde,string skonto,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf)
 {
 	
-	_vectorDaten.push_back("\nRunde: " + runde + "| Konto " + konto + "| Einsatz " + eisatz + "| Farbe " + farbe + "| Casino " + casinobank + "| Bool " + gewonnen + "| Kugel " +kugel+ "| Kon " + gewonnenauf + "\n");
+	_vectorDaten.push_back( runde + "," + skonto + "," + konto + "," + eisatz + "," + farbe + "," + casinobank + "," + gewonnen + "," + kugel + "," + gewonnenauf+"\n");
 	
 }
 void Tisch::berechnungXpbeute()
@@ -317,7 +319,7 @@ void Tisch::berechnungXpbeute()
 
 		//printXpBerechnungVerlust();
 
-		legeDatenAb(to_string(_gespielteSpiele),to_string(_aiPlayer.holeAIPlayerKonto()),to_string(_Mindesteinsatz),_auswahlWahl,to_string(_casinoBank.holeBank()), to_string(_RundeGewonnen),to_string(kugelgefallen),to_string(_auswahlWahl=="ROT"?_verlorenAufRot:_verlorenAufSchwarz));
+		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeAIPlayerKonto())),to_string(int(_Mindesteinsatz)),_auswahlWahl,to_string(int(_casinoBank.holeBank())), to_string( _RundeGewonnen), to_string(kugelgefallen), to_string(int(_auswahlWahl == "ROT" ? _verlorenAufRot : _verlorenAufSchwarz)));
 	}
 	else if(_RundeGewonnen == true) {
 
@@ -329,7 +331,7 @@ void Tisch::berechnungXpbeute()
 
 		//printXpBerechnungGewinn();
 		
-		legeDatenAb(to_string(_gespielteSpiele), to_string(_aiPlayer.holeAIPlayerKonto()), to_string(_Mindesteinsatz), _auswahlWahl, to_string(_casinoBank.holeBank()), to_string(_RundeGewonnen),to_string(kugelgefallen),to_string(_auswahlWahl == "ROT" ? _gewonnenAufRot : _gewonnenAufSchwarz));
+		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeAIPlayerKonto())), to_string(int(_Mindesteinsatz)), _auswahlWahl, to_string(int(_casinoBank.holeBank())), to_string(_RundeGewonnen),to_string(kugelgefallen),to_string(int(_auswahlWahl == "ROT" ? _gewonnenAufRot : _gewonnenAufSchwarz)));
 	}
 }
 
@@ -895,6 +897,8 @@ void Tisch::setzeAufZahlprint()
 }
 void Tisch::AIMenuePrint()
 {
+	float puffer = 0.0f;
+
 	system("CLS");
 
 	cleanupAIPlayer();
@@ -958,7 +962,7 @@ void Tisch::AIMenuePrint()
 
 								_Mindesteinsatz += _Mindesteinsatz;
 							}
-
+							_Runde = 'B';
 						}
 						for (int i = 0; i < 18; i++)
 						{
@@ -972,7 +976,9 @@ void Tisch::AIMenuePrint()
 
 								_gewonnenAufRot += _Mindesteinsatz;
 
-								_aiPlayer.setzeAIPlayerKonto(_Mindesteinsatz);
+								puffer = _Mindesteinsatz * 2;
+
+								_aiPlayer.setzeAIPlayerKonto(puffer);
 
 								_RundeGewonnen = true;
 
@@ -983,6 +989,8 @@ void Tisch::AIMenuePrint()
 								prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
 
 								_Mindesteinsatz = _setzeAufRot;
+
+								puffer = 0.0f;
 							}
 							else if (kugelgefallen == schwarz[i])
 							{
@@ -1058,7 +1066,7 @@ void Tisch::AIMenuePrint()
 
 								_Mindesteinsatz += _Mindesteinsatz;
 							}
-
+							_Runde = 'A';
 						}
 						for (int i = 0; i < 18; i++)
 						{
@@ -1102,7 +1110,11 @@ void Tisch::AIMenuePrint()
 
 								_gewonnenAufSchwarz += _Mindesteinsatz;
 
-								_aiPlayer.setzeAIPlayerKonto(_Mindesteinsatz);
+						
+								puffer = _Mindesteinsatz * 2;
+
+
+								_aiPlayer.setzeAIPlayerKonto(puffer);
 
 								_RundeGewonnen = true;
 
@@ -1114,6 +1126,8 @@ void Tisch::AIMenuePrint()
 
 								_Mindesteinsatz = _setzeAufSchwarz;
 
+								puffer = 0.0f;
+
 							}
 						}
 
@@ -1121,7 +1135,7 @@ void Tisch::AIMenuePrint()
 					
 				}
 				system("CLS");
-				printf("Halte fest\n");
+
 				
 				for (string n : _vectorDaten)
 				{
@@ -1156,7 +1170,7 @@ void Tisch::cleanupAIPlayer()
 	_setzeAufRot = zero;
 	_setzeAufSchwarz = zero;
 	_Mindesteinsatz = zero;
-	_zahlRot = zero;
+	_zahlRot = zerolong;
 	_zahlSchwarz = zerolong;
 	_zahlZero = zerolong;
 

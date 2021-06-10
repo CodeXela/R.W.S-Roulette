@@ -28,7 +28,7 @@ private:
 
 	void prüfeLVLCap(float lvlCapP);
 
-	void legeDatenAb(string runde,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf);
+	void legeDatenAb(string runde, string skonto,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf);
 
 	void Speichern();
 
