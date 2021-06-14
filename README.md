@@ -5,8 +5,8 @@ Anregungen und Hilfestellungen sind erwuenscht.
 Zum Projekt:
 
 	Roulette Wahrscheinlichkeitssimulator 
-	Aktuelle Version: 0.104
-	Datum: 07.06.2021
+	Aktuelle Version: 0.105
+	Datum: 14.06.2021
 
 Ziele:
 
@@ -21,12 +21,12 @@ Ziele:
  1.Die Berechnung der Wahrscheinlichkeit beim Setzen auf die verschiedenen Wettarten (Future Development): 
 
 	Einfache Chancen  		1 : 1  [Done]
-	Dutzende, Kolonnen  	2 : 1
-	Transversale simple 	5 : 1
-	Carré 					8 : 1
-	Transversale pleine    11 : 1
-	Cheval 				   17 : 1
-	Plein  				   35 : 1
+	Dutzende, Kolonnen  		2 : 1
+	Transversale simple 		5 : 1
+	CarrÃ© 				8 : 1
+	Transversale pleine    		11 : 1
+	Cheval 				17 : 1
+	Plein  				35 : 1
 
  2. Statistik und Auswertung (Future Development):
 	
@@ -37,7 +37,7 @@ Ziele:
 	Spiele Verloren und gewonnen
 	
 
- 3. Automatisches Spielen (Future Development):
+ 3. Automatisches Spielen (UnderConstruction):
  
 	Advanced Framework
 	Advanced Menue
