@@ -7,22 +7,20 @@ CasinoBank::CasinoBank()
 	
 }
 
-void CasinoBank::initCB(float bank)
+void CasinoBank::initCB(double bank)
 {
-
 	_Bank = bank;
-
 }
 CasinoBank::~CasinoBank()
 {
 }
 
-void CasinoBank::setzeBankKonto(float bank)
+void CasinoBank::setzeBankKonto(double bank)
 {
 	_Bank += bank;
 
 }
-void CasinoBank::entferneBankKonto(float nbank)
+void CasinoBank::entferneBankKonto(double nbank)
 {
 	_Bank -= nbank;
 

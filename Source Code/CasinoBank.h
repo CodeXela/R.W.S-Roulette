@@ -5,18 +5,18 @@ public:
 
 	CasinoBank();
 
-	void initCB(float bank);
+	void initCB(double bank);
 
-	float holeBank() { return _Bank; };
+	double holeBank() { return _Bank; };
 
-	void setzeBankKonto(float bank);
+	void setzeBankKonto(double bank);
 
-	void entferneBankKonto(float nbank);
+	void entferneBankKonto(double nbank);
 
 	~CasinoBank();
 
 private:
 
-	float _Bank;
+	double _Bank{};
 };
 

@@ -1,41 +1,23 @@
 #pragma once
-class AIPlayer
+#include "Player.h"
+
+class AIPlayer:public Player
 {
 public:
 
+	
 	AIPlayer();
-
-	void initAIPlayer( float konto, float XP, unsigned short int Lvl, float lvlCapp);
-
-
-	float holeAIPlayerXP() { return _XP; };
-	void setzeAIPlayerXP(float &xp);
 	
-
-	int holeAIPlayerLVL() { return _LVL; };
-	void setzeAIPlayerLVL(unsigned short int &aipLVL);
-
-
-	float holeAIPlayerKonto() { return _Konto; };
-	void setzeAIPlayerKonto(float &aipKonto);
-	void entferneAIPlayerKonto(float &aipKontoE);
-	
-	
-
 	~AIPlayer();
+	
 
 private:
 
-	void pruefeAIPlayerLVLCap();
+	/*void pruefeAIPlayerLVLCap();
+
+	void setzeAIPAufZahl(unsigned short int kugelGefallen, float mindestEinsatz, float setzeAufZahl, unsigned short int zahlAuswahl);*/
 
 private:
 
-	float _Konto;
-
-	float  _XP;
-
-	unsigned short int _LVL;
-
-	float _lvlCapP;
 };
 

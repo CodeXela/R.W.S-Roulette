@@ -22,13 +22,13 @@ public:
 
 private:
 
-	void InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, float gewonnenAufRot, float gewonnenAufSchwarz, float verlorenAufRot, float verlorenAufSchwarz,float verlorenAufZahl, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz,float setzeAufZahl, float lvlCap);
+	void InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, double gewonnenAufRot, double gewonnenAufSchwarz, double verlorenAufRot, double verlorenAufSchwarz, double verlorenAufZahl, int gespielteSpiele, double setzeAufRot, double setzeAufSchwarz, double setzeAufZahl, unsigned int lvlCap);
 	
 	void berechnungXpbeute();
 
-	void prüfeLVLCap(float lvlCapP);
+	//void prüfeLVLCap(float lvlCapP);
 
-	void legeDatenAb(string runde, string skonto,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf);
+	void legeDatenAb(string runde, string skonto,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf,string lvl, string exp, string expAnzahl, string multi, string expBonus);
 
 	void Speichern();
 
@@ -69,21 +69,21 @@ private:
 	//Var für diverse berechnungen
 	const float _Prozent=100.0f;
 
-	float _Mindesteinsatz=0.2f;
+	double _Mindesteinsatz=1.0;
 
-	float _MultiCap = 0.0f;
+	double _MultiCap = 0.0;
 
-	float xpanzahl = 0.0f;
+	double xpanzahl = 0;
 
-	float xpBonus = 0.0f;
+	double xpBonus = 0;
 
-	float halteFest = 0.0f;
+	double halteFest = 0.0;
 
-	float halteEinsatz = 0.0f;
+	double halteEinsatz = 0.0;
 
-	float halteKonto = 0.0f;
+	double halteKonto = 0.0;
 
-	float Multiplikator = 0.0f;
+	double Multiplikator = 0.0;
 	
 	//Folgeentscheidung und Sieg
 	bool _bleibtSchwarz;
@@ -102,26 +102,28 @@ private:
 	char _Runde = 'A';
 
 	//Einsätze
-	float _setzeAufRot;
+	double _setzeAufRot;
 
-	float _setzeAufSchwarz;
+	double _setzeAufSchwarz;
 
-	float _setzeAufZahl;
+	double _setzeAufZahl;
 
-	float _einsatzAIP=0.0f;
+	double _einsatzAIP=0.0;
+
+	double _gewinnAIP = 0.0;
 
 	//gewinne
 
-	float _gewonnenAufRot;
+	double _gewonnenAufRot;
 
-	float _gewonnenAufSchwarz;
+	double _gewonnenAufSchwarz;
 
 	//Verluste
-	float _verlorenAufRot;
+	double _verlorenAufRot;
 
-	float _verlorenAufSchwarz;
+	double _verlorenAufSchwarz;
 
-	float _verlorenAufZahl;
+	double _verlorenAufZahl;
 
 	//Match Statistic
 	unsigned long int _gespielteSpiele;
@@ -135,7 +137,7 @@ private:
 	unsigned short int _ZahlAuswahl=0;
 
 
-	float _lvlCap;
+	unsigned int _lvlCap;
 
 	Spieler _spieler;
 
@@ -150,7 +152,7 @@ private:
 	/*int _Width =0;
 	int _Height =0;*/
 
-	unsigned short int kugelgefallen = 0;
+	int kugelgefallen = 0;
 	const int anzahl = 8;
 	//Zahlen für Farben (zum testen über Heap)
 	int *rot = new int[18]{ 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };

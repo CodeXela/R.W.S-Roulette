@@ -13,7 +13,6 @@ using namespace std;
 int main()
 {
 	
-
 	Tisch *T1 = new Tisch(); // Erzeuge instanz von Tisch als zeiger und lege es im Ram ab
 
 	T1->spieleSpiel(); //starte das spiel

@@ -33,15 +33,21 @@ Tisch::Tisch()//Konstruktor der alle beim start mit daten befüllt
 	
 	SetWindow(95,40);//setze Consolengröße fest
 
-	InitTisch(false,false,false,false,0.0f,0.0f,0.0f,0.0f,0.0f,0,0.0f,0.0f,0.0f,0.0f);//Statistik startwerte (MERKE*ersetzen mit eingabe)
+	InitTisch(false,false,false,false,0.0,0.0,0.0,0.0,0.0,0,0.0,0.0,0.0,0u);//Statistik startwerte (MERKE*ersetzen mit eingabe)
 	
-	_spieler.initSpieler("NONAME",1000.0f,0.0f,0,0.0f);// Spieler startwerte (MERKE*ersetzen mit eingabe)
+	//_spieler.initSpieler("NONAME",1000.0f,0.0f,0,0.0f);// Spieler startwerte (MERKE*ersetzen mit eingabe)
 
 	_casinoBank.initCB(1000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
 	
-	_aiPlayer.initAIPlayer(0.0f, 0.0f, 0, 0.0f);// Aispieler wird aufgefüllt(MERKE*ersetzen mit eingabe)
+	//_aiPlayer.initAIPlayer(250.0f, 0.0f, 0, 0.0f);// Aispieler wird aufgefüllt(MERKE*ersetzen mit eingabe)
 
-	
+	_aiPlayer.initPlayer(0,0,0,0);
+	_spieler.initPlayer(1000,0,0,0);
+
+	//cout <<"AIPlayer: " << _aiPlayer.holeAIPlayerKonto();
+	cout <<"Player AIplayer: " <<_aiPlayer.holeKonto();
+	cout <<"Spieler: " << _spieler.holeKonto();
+	cout << "Player Spieler: " << _spieler.holeKonto();
 }
 void Tisch::spieleSpiel() //wird in der mainfunktion gerufen und startet das spiel
 {
@@ -54,7 +60,7 @@ Tisch::~Tisch()//Dekonstruktor
 	
 
 }
-void Tisch::InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, float gewonnenAufRot, float gewonnenAufSchwarz, float verlorenAufRot, float verlorenAufSchwarz, float verlorenAufZahl, int gespielteSpiele, float setzeAufRot, float setzeAufSchwarz,float setzeAufZahl, float lvlCap)
+void Tisch::InitTisch(bool rundeGewonnen, bool richtig, bool bleibtRot, bool bleibtSchwarz, double gewonnenAufRot, double gewonnenAufSchwarz, double verlorenAufRot, double verlorenAufSchwarz, double verlorenAufZahl, int gespielteSpiele, double setzeAufRot, double setzeAufSchwarz, double setzeAufZahl, unsigned int lvlCap)
 {
 
 	_RundeGewonnen = rundeGewonnen;
@@ -202,11 +208,11 @@ void Tisch::Speichern()
 	{
 
 		/*FILE << std::fixed  << _spieler.holeSpielerName() << endl;
-		FILE << std::fixed << std::setprecision(1) << _spieler.holeSpielerKonto() << endl;
-		FILE << std::fixed << std::setprecision(1) << _spieler.holeSpielerXP() << endl;
+		FILE << std::fixed << std::setprecision(1) << _spieler.holeKonto() << endl;
+		FILE << std::fixed << std::setprecision(1) << _spieler.holeEXP() << endl;
 		FILE << std::fixed << std::setprecision(1) << _casinoBank.holeBank() << endl;*/
 
-		FILE << "\nRunde , StartKonto , EndKonto , Einsatz , Farbe , CasinoKonto, Gewonnen , Kugel , Gewinn/Verlust" << endl;
+		FILE << "\nRunde , StartKonto , EndKonto , Einsatz , Farbe , CasinoKonto, Gewonnen , Kugel , Gewinn/Verlust , LVL , EXP , expAnzahl, Multi , expBonus" << endl;
 
 		for (string n : _vectorDaten)
 		{
@@ -249,64 +255,64 @@ void Tisch::Speichern()
 //
 //
 //}
-void Tisch::prüfeLVLCap(float lvlCapP)
+//void Tisch::prüfeLVLCap(float lvlCapP)
+//{
+//	
+//
+//	halteFest = lvlCapP;
+//
+//	if (lvlCapP > 0)
+//	{
+//		if (_spieler.holeLVL() >= 0 && _spieler.holeLVL() <= 5)
+//		{
+//			
+//			_lvlCap = (halteFest/1000)*100;
+//	
+//		}
+//		else if (_spieler.holeLVL() >= 6 && _spieler.holeLVL() <= 10)
+//		{
+//			_lvlCap = (halteFest / 2000) * 100;
+//		}
+//		else if (_spieler.holeLVL() >= 11 && _spieler.holeLVL() <= 15)
+//		{
+//			_lvlCap = (halteFest / 3000) * 100;
+//		}
+//		else if (_spieler.holeLVL() >= 16 && _spieler.holeLVL() <= 20)
+//		{
+//			_lvlCap = (halteFest / 4000) * 100;
+//		}
+//		else if (_spieler.holeLVL() >= 21 && _spieler.holeLVL() <= 25)
+//		{
+//			_lvlCap = (halteFest / 5000) * 100;
+//		}
+//		else if (_spieler.holeLVL() >= 26 && _spieler.holeLVL() <= 30)
+//		{
+//			_lvlCap = (halteFest / 6000) * 100;
+//		}
+//		else if (_spieler.holeLVL() >= 31 && _spieler.holeLVL() <= 35)
+//		{
+//			_lvlCap = (halteFest / 7000) * 100;
+//		}
+//		else if (_spieler.holeLVL() >= 36 && _spieler.holeLVL() <= 40)
+//		{
+//			_lvlCap = (halteFest / 8000) * 100;
+//		}
+//		else if (_spieler.holeLVL() >= 41 && _spieler.holeLVL() <= 45)
+//		{
+//			_lvlCap = (halteFest / 9000) * 100;
+//		}
+//		else if (_spieler.holeLVL() >= 46 && _spieler.holeLVL() <= 50)
+//		{
+//			_lvlCap = (halteFest / 10000) * 100;
+//		}
+//		
+//	}
+//
+//}
+void Tisch::legeDatenAb(string runde,string skonto,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf, string lvl, string exp, string expAnzahl, string multi, string expBonus)
 {
 	
-
-	halteFest = lvlCapP;
-
-	if (lvlCapP > 0)
-	{
-		if (_spieler.holeSpielerLVL() >= 0 && _spieler.holeSpielerLVL() <= 5)
-		{
-			
-			_lvlCap = (halteFest/1000)*100;
-	
-		}
-		else if (_spieler.holeSpielerLVL() >= 6 && _spieler.holeSpielerLVL() <= 10)
-		{
-			_lvlCap = (halteFest / 2000) * 100;
-		}
-		else if (_spieler.holeSpielerLVL() >= 11 && _spieler.holeSpielerLVL() <= 15)
-		{
-			_lvlCap = (halteFest / 3000) * 100;
-		}
-		else if (_spieler.holeSpielerLVL() >= 16 && _spieler.holeSpielerLVL() <= 20)
-		{
-			_lvlCap = (halteFest / 4000) * 100;
-		}
-		else if (_spieler.holeSpielerLVL() >= 21 && _spieler.holeSpielerLVL() <= 25)
-		{
-			_lvlCap = (halteFest / 5000) * 100;
-		}
-		else if (_spieler.holeSpielerLVL() >= 26 && _spieler.holeSpielerLVL() <= 30)
-		{
-			_lvlCap = (halteFest / 6000) * 100;
-		}
-		else if (_spieler.holeSpielerLVL() >= 31 && _spieler.holeSpielerLVL() <= 35)
-		{
-			_lvlCap = (halteFest / 7000) * 100;
-		}
-		else if (_spieler.holeSpielerLVL() >= 36 && _spieler.holeSpielerLVL() <= 40)
-		{
-			_lvlCap = (halteFest / 8000) * 100;
-		}
-		else if (_spieler.holeSpielerLVL() >= 41 && _spieler.holeSpielerLVL() <= 45)
-		{
-			_lvlCap = (halteFest / 9000) * 100;
-		}
-		else if (_spieler.holeSpielerLVL() >= 46 && _spieler.holeSpielerLVL() <= 50)
-		{
-			_lvlCap = (halteFest / 10000) * 100;
-		}
-		
-	}
-
-}
-void Tisch::legeDatenAb(string runde,string skonto,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf)
-{
-	
-	_vectorDaten.push_back( runde + "," + skonto + "," + konto + "," + eisatz + "," + farbe + "," + casinobank + "," + gewonnen + "," + kugel + "," + gewonnenauf+"\n");
+	_vectorDaten.push_back( runde + "," + skonto + "," + konto + "," + eisatz + "," + farbe + "," + casinobank + "," + gewonnen + "," + kugel + "," + gewonnenauf + "," + lvl + "," + exp + "," + expAnzahl+ "," + multi+ "," + expBonus+"\n");
 	
 }
 void Tisch::berechnungXpbeute()
@@ -319,7 +325,7 @@ void Tisch::berechnungXpbeute()
 
 		//printXpBerechnungVerlust();
 
-		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeAIPlayerKonto())),to_string(int(_Mindesteinsatz)),_auswahlWahl,to_string(int(_casinoBank.holeBank())), to_string( _RundeGewonnen), to_string(kugelgefallen), to_string(int(_auswahlWahl == "ROT" ? _verlorenAufRot : _verlorenAufSchwarz)));
+		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeKonto())),to_string(int(_Mindesteinsatz)),_auswahlWahl,to_string(int(_casinoBank.holeBank())), to_string( _RundeGewonnen), to_string(kugelgefallen), to_string(int(_auswahlWahl == "ROT" ? _verlorenAufRot : _verlorenAufSchwarz)),to_string(_aiPlayer.holeLVL()),to_string(_aiPlayer.holeEXP()), to_string(xpanzahl),to_string(Multiplikator),to_string(xpBonus));
 	}
 	else if(_RundeGewonnen == true) {
 
@@ -331,7 +337,7 @@ void Tisch::berechnungXpbeute()
 
 		//printXpBerechnungGewinn();
 		
-		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeAIPlayerKonto())), to_string(int(_Mindesteinsatz)), _auswahlWahl, to_string(int(_casinoBank.holeBank())), to_string(_RundeGewonnen),to_string(kugelgefallen),to_string(int(_auswahlWahl == "ROT" ? _gewonnenAufRot : _gewonnenAufSchwarz)));
+		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeKonto())), to_string(int(_Mindesteinsatz)), _auswahlWahl, to_string(int(_casinoBank.holeBank())), to_string(_RundeGewonnen),to_string(kugelgefallen),to_string(int(_auswahlWahl == "ROT" ? _gewonnenAufRot : _gewonnenAufSchwarz)),to_string(_aiPlayer.holeLVL()), to_string(_aiPlayer.holeEXP()), to_string(xpanzahl), to_string(Multiplikator), to_string(xpBonus));
 	}
 }
 
@@ -394,15 +400,15 @@ void Tisch::MenueAbfrageprint()
 }
 void Tisch::singelPlayerprint()
 {
-	if (_spieler.holeSpielerKonto() >= _Mindesteinsatz)
+	if (_spieler.holeKonto() >= _Mindesteinsatz)
 	{
 		
 		
 		//----------------------------------------------------------------------------------Menue
 		printf("%s\n", string(95, '#').c_str());
-		cout << "  Spieler Name:  " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeSpielerLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
-		printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeSpielerKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
-		printf("  XP Fortschrit:   %0.1f    %0.2f%%                                                                      \n", _spieler.holeSpielerXP(), _lvlCap);
+		cout << "  Spieler Name:  " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
+		printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeKonto()); printf("                  Mindesteinsatz:        %0.1f Cent   \n", _Mindesteinsatz);
+		printf("  XP Fortschrit:   %0.0f    %u%%                                                                      \n", _spieler.holeEXP(), _lvlCap);
 		printf("%s\n", string(95, '#').c_str());
 		printf("\n\n\n\n\n\n\n\n\n\n\n");
 		printf("\n\n\n\n\n\n\n\n\n\n\n");
@@ -442,14 +448,14 @@ void Tisch::singelPlayerprint()
 }
 void Tisch::setzeAufRotprint()
 {
-	if (_spieler.holeSpielerKonto() >= _Mindesteinsatz)
+	if (_spieler.holeKonto() >= _Mindesteinsatz)
 	{
 		system("CLS");
 		//----------------------------------------------------------------------------------Menue
 		printf("%s\n", string(95, '#').c_str());
-		cout << "  Spieler Name:       " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeSpielerLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
-		printf("  Spieler Konto:     %0.1f Euro.", _spieler.holeSpielerKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
-		printf("  XP Fortschrit:   %0.1f   %0.2f%%                                                                 \n", _spieler.holeSpielerXP(), _lvlCap);
+		cout << "  Spieler Name:       " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
+		printf("  Spieler Konto:     %0.1f Euro.", _spieler.holeKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
+		printf("  XP Fortschrit:   %0.0f   %0u%%                                                                 \n", _spieler.holeEXP(), _lvlCap);
 		printf("%s\n", string(95, '#').c_str());
 		printf("\n\n\n\n\n\n\n\n\n\n\n");
 		printf("\n\n\n\n\n\n\n\n\n\n\n");
@@ -457,7 +463,7 @@ void Tisch::setzeAufRotprint()
 		printf("%s\n", string(95, '#').c_str());
 		//----------------------------------------------------------------------------------Menue
 
-		halteKonto = _spieler.holeSpielerKonto();
+		halteKonto = _spieler.holeKonto();
 
 		cin >> _setzeAufRot;
 		
@@ -486,7 +492,7 @@ void Tisch::setzeAufRotprint()
 		cin.ignore(INT_MAX, '\n');
 
 		//----------------------------------------------------------------------------------
-		if (_setzeAufRot <= _spieler.holeSpielerKonto())
+		if (_setzeAufRot <= _spieler.holeKonto())
 		{
 			if (_setzeAufRot < _Mindesteinsatz)
 			{
@@ -502,7 +508,7 @@ void Tisch::setzeAufRotprint()
 
 			}
 
-			_spieler.entferneSpielerKonto(_setzeAufRot);//TO DO 24.10.2015->
+			_spieler.entferneKonto(_setzeAufRot);//TO DO 24.10.2015->
 
 			system("CLS");
 
@@ -523,9 +529,9 @@ void Tisch::setzeAufRotprint()
 
 				berechnungXpbeute();
 
-				_spieler.setzeSpielerXP(xpanzahl);//XP und LVL Test
+				_spieler.setzeEXP(xpanzahl);//XP und LVL Test
 
-				prüfeLVLCap(_spieler.holeSpielerXP());
+				//prüfeLVLCap(_spieler.holeEXP());
 
 				_setzeAufRot = NULL;
 
@@ -546,15 +552,15 @@ void Tisch::setzeAufRotprint()
 
 					_setzeAufRot = (_setzeAufRot * 2);
 
-					_spieler.setzeSpielerKonto(_setzeAufRot);
+					_spieler.setzeKonto(_setzeAufRot);
 
 					_RundeGewonnen = true;
 
 					berechnungXpbeute();
 
-					_spieler.setzeSpielerXP(xpanzahl);//XP und LVL Test
+					_spieler.setzeEXP(xpanzahl);//XP und LVL Test
 
-					prüfeLVLCap(_spieler.holeSpielerXP());
+					//prüfeLVLCap(_spieler.holeEXP());
 
 					_setzeAufRot = NULL;
 
@@ -575,9 +581,9 @@ void Tisch::setzeAufRotprint()
 
 					berechnungXpbeute();
 
-					_spieler.setzeSpielerXP(xpanzahl);
+					_spieler.setzeEXP(xpanzahl);
 
-					prüfeLVLCap(_spieler.holeSpielerXP());
+					//prüfeLVLCap(_spieler.holeEXP());
 
 					_setzeAufRot = NULL;
 
@@ -600,15 +606,15 @@ void Tisch::setzeAufRotprint()
 }
 void Tisch::setzeAufSchwarzprint()
 {
-	if (_spieler.holeSpielerKonto() >= _Mindesteinsatz)
+	if (_spieler.holeKonto() >= _Mindesteinsatz)
 	{
 	system("CLS");
 
 	//----------------------------------------------------------------------------------Menue
 	printf("%s\n", string(95, '#').c_str());
-	cout << "  Spieler Name:       " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeSpielerLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
-	printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeSpielerKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
-	printf("  XP Fortschrit:  %0.1f    %0.2f%%                                                                        \n", _spieler.holeSpielerXP(), _lvlCap);
+	cout << "  Spieler Name:       " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
+	printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
+	printf("  XP Fortschrit:  %0.0f    %0u%%                                                                        \n", _spieler.holeEXP(), _lvlCap);
 	printf("%s\n", string(95, '#').c_str());
 	printf("\n\n\n\n\n\n\n\n\n\n\n");
 	printf("\n\n\n\n\n\n\n\n\n\n\n");
@@ -616,7 +622,7 @@ void Tisch::setzeAufSchwarzprint()
 	printf("%s\n", string(95, '#').c_str());
 	//----------------------------------------------------------------------------------Menue
 
-	halteKonto = _spieler.holeSpielerKonto();
+	halteKonto = _spieler.holeKonto();
 
 	cin >> _setzeAufSchwarz;
 
@@ -644,7 +650,7 @@ void Tisch::setzeAufSchwarzprint()
 	cin.clear();
 	cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
 
-	if (_setzeAufSchwarz <= _spieler.holeSpielerKonto())
+	if (_setzeAufSchwarz <= _spieler.holeKonto())
 	{
 		if (_setzeAufSchwarz < _Mindesteinsatz)
 		{
@@ -663,7 +669,7 @@ void Tisch::setzeAufSchwarzprint()
 
 		system("CLS"); //Screen bereinigen
 
-		_spieler.entferneSpielerKonto(_setzeAufSchwarz);
+		_spieler.entferneKonto(_setzeAufSchwarz);
 
 		kugelgefallen = _dealer.RolltKugel();//Werfe die Kugel
 
@@ -682,9 +688,9 @@ void Tisch::setzeAufSchwarzprint()
 
 			berechnungXpbeute();
 
-			_spieler.setzeSpielerXP(xpanzahl);//XP und LVL Test
+			_spieler.setzeEXP(xpanzahl);//XP und LVL Test
 
-			prüfeLVLCap(_spieler.holeSpielerXP());
+			//prüfeLVLCap(_spieler.holeEXP());
 
 			_setzeAufSchwarz = NULL;
 
@@ -704,15 +710,15 @@ void Tisch::setzeAufSchwarzprint()
 
 				_setzeAufSchwarz = _setzeAufSchwarz * 2;
 
-				_spieler.setzeSpielerKonto(_setzeAufSchwarz);
+				_spieler.setzeKonto(_setzeAufSchwarz);
 
 				_RundeGewonnen = true;
 
 				berechnungXpbeute();
 
-				_spieler.setzeSpielerXP(xpanzahl);//XP und LVL Test
+				_spieler.setzeEXP(xpanzahl);//XP und LVL Test
 
-				prüfeLVLCap(_spieler.holeSpielerXP());
+				//prüfeLVLCap(_spieler.holeEXP());
 
 				_setzeAufSchwarz = NULL;
 
@@ -733,9 +739,9 @@ void Tisch::setzeAufSchwarzprint()
 
 				berechnungXpbeute();
 
-				_spieler.setzeSpielerXP(xpanzahl);
+				_spieler.setzeEXP(xpanzahl);
 
-				prüfeLVLCap(_spieler.holeSpielerXP());
+				//prüfeLVLCap(_spieler.holeEXP());
 
 				_setzeAufSchwarz = NULL;
 
@@ -759,14 +765,14 @@ void Tisch::setzeAufSchwarzprint()
 }
 void Tisch::setzeAufZahlprint()
 {
-	if (_spieler.holeSpielerKonto() >= _Mindesteinsatz)
+	if (_spieler.holeKonto() >= _Mindesteinsatz)
 	{
 		system("CLS");
 		//----------------------------------------------------------------------------------Menue
 		printf("%s\n", string(95, '#').c_str());
-		cout << "  Spieler Name:       " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeSpielerLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
-		printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeSpielerKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
-		printf("  XP Fortschrit:   %0.1f   %0.2f%%                                                                 \n", _spieler.holeSpielerXP(), _lvlCap);
+		cout << "  Spieler Name:       " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
+		printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeKonto()); printf("                  Mindesteinsatz:        %0.0f Cent   \n", _Mindesteinsatz);
+		printf("  XP Fortschrit:   %0.0f  %u%%                                                                 \n", _spieler.holeEXP(), _lvlCap);
 		printf("%s\n", string(95, '#').c_str());
 		printf("\n\n\n\n\n\n\n\n\n\n\n");
 		printf("\n\n\n\n\n\n\n\n\n\n\n");
@@ -774,7 +780,7 @@ void Tisch::setzeAufZahlprint()
 		printf("%s\n", string(95, '#').c_str());
 		//----------------------------------------------------------------------------------Menue
 
-		halteKonto = _spieler.holeSpielerKonto();
+		halteKonto = _spieler.holeKonto();
 
 		cin >> _setzeAufZahl;
 
@@ -811,7 +817,7 @@ void Tisch::setzeAufZahlprint()
 		cin.clear();
 		cin.ignore(INT_MAX, '\n');
 
-		if (_setzeAufZahl <= _spieler.holeSpielerKonto())
+		if (_setzeAufZahl <= _spieler.holeKonto())
 		{
 			if (_setzeAufZahl < _Mindesteinsatz)
 			{
@@ -827,7 +833,7 @@ void Tisch::setzeAufZahlprint()
 
 			}
 
-			_spieler.entferneSpielerKonto(_setzeAufZahl);//TO DO 24.10.2015->
+			_spieler.entferneKonto(_setzeAufZahl);//TO DO 24.10.2015->
 
 			system("CLS");
 
@@ -848,15 +854,15 @@ void Tisch::setzeAufZahlprint()
 				
 				_setzeAufZahl = (_setzeAufZahl * 36);
 				
-				_spieler.setzeSpielerKonto(_setzeAufZahl);
+				_spieler.setzeKonto(_setzeAufZahl);
 				
 				_RundeGewonnen = true;
 				
 				berechnungXpbeute();
 				
-				_spieler.setzeSpielerXP(xpanzahl);//XP und LVL Test
+				_spieler.setzeEXP(xpanzahl);//XP und LVL Test
 				
-				prüfeLVLCap(_spieler.holeSpielerXP());
+				//prüfeLVLCap(_spieler.holeEXP());
 				
 				_setzeAufZahl = NULL;
 
@@ -873,9 +879,9 @@ void Tisch::setzeAufZahlprint()
 				
 				berechnungXpbeute();
 				
-				_spieler.setzeSpielerXP(xpanzahl);
+				_spieler.setzeEXP(xpanzahl);
 				
-				prüfeLVLCap(_spieler.holeSpielerXP());
+				//prüfeLVLCap(_spieler.holeEXP());
 
 				_setzeAufZahl = NULL;
 
@@ -897,16 +903,18 @@ void Tisch::setzeAufZahlprint()
 }
 void Tisch::AIMenuePrint()
 {
-	float puffer = 0.0f;
+	double puffer = 0.0;
 
 	system("CLS");
 
-	cleanupAIPlayer();
+	//cleanupAIPlayer();
 
 	printAiMainMenu();
 
 	_setzeAufRot = _Mindesteinsatz;
 	_setzeAufSchwarz = _Mindesteinsatz;
+
+	_gewinnAIP += _einsatzAIP;
 
 	cin.clear();
 	cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
@@ -917,22 +925,22 @@ void Tisch::AIMenuePrint()
 			case 'r':
 			case 'R':
 
-				while (_aiPlayer.holeAIPlayerKonto() >= _Mindesteinsatz)
+				while (_aiPlayer.holeKonto() >= _Mindesteinsatz && _aiPlayer.holeKonto() <= _gewinnAIP)
 				{
 
 					if (_Runde == 'A')//doppeltgemoppelt
 					{				
-						printf("\n%s|Setze auf Rot \n\n", string(24, '*').c_str());
+						//printf("\n%s|Setze auf Rot \n\n", string(24, '*').c_str());
 
-						halteKonto = _aiPlayer.holeAIPlayerKonto();
+						halteKonto = _aiPlayer.holeKonto();
 
 						halteEinsatz = _Mindesteinsatz;
 
 						_gespielteSpiele++;
 
 						_auswahlWahl = "ROT";
-
-						_aiPlayer.entferneAIPlayerKonto(_Mindesteinsatz);
+						
+						_aiPlayer.entferneKonto(_Mindesteinsatz);
 
 						kugelgefallen = _dealer.RolltKugel();
 
@@ -950,9 +958,10 @@ void Tisch::AIMenuePrint()
 
 							berechnungXpbeute();
 
-							_aiPlayer.setzeAIPlayerXP(xpanzahl);//XP und LVL Test
+							
+							_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
 
-							prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+							//prüfeLVLCap(_aiPlayer.holeEXP());
 
 							if ((_Mindesteinsatz*2)>_MultiCap)
 							{
@@ -978,15 +987,15 @@ void Tisch::AIMenuePrint()
 
 								puffer = _Mindesteinsatz * 2;
 
-								_aiPlayer.setzeAIPlayerKonto(puffer);
+								_aiPlayer.setzeKonto(puffer);
 
 								_RundeGewonnen = true;
 
 								berechnungXpbeute();
 
-								_aiPlayer.setzeAIPlayerXP(xpanzahl);//XP und LVL Test
+								_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
 
-								prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+								//prüfeLVLCap(_aiPlayer.holeEXP());
 
 								_Mindesteinsatz = _setzeAufRot;
 
@@ -1006,9 +1015,9 @@ void Tisch::AIMenuePrint()
 
 								berechnungXpbeute();
 
-								_aiPlayer.setzeAIPlayerXP(xpanzahl);
+								_aiPlayer.setzeEXP(xpanzahl);
 
-								prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+								//prüfeLVLCap(_aiPlayer.holeEXP());
 								
 								if ((_Mindesteinsatz * 2) > _MultiCap)
 								{
@@ -1026,9 +1035,9 @@ void Tisch::AIMenuePrint()
 					else if (_Runde == 'B')
 					{
 						
-						printf("\n%s|Setze auf Schwarz \n\n", string(24, '*').c_str());
+						//printf("\n%s|Setze auf Schwarz \n\n", string(24, '*').c_str());
 
-						halteKonto = _aiPlayer.holeAIPlayerKonto();
+						halteKonto = _aiPlayer.holeKonto();
 
 						halteEinsatz = _Mindesteinsatz;
 
@@ -1036,7 +1045,7 @@ void Tisch::AIMenuePrint()
 
 						_auswahlWahl = "SCHWARZ";
 
-						_aiPlayer.entferneAIPlayerKonto(_Mindesteinsatz);
+						_aiPlayer.entferneKonto(_Mindesteinsatz);
 
 						kugelgefallen = _dealer.RolltKugel();
 
@@ -1054,9 +1063,9 @@ void Tisch::AIMenuePrint()
 
 							berechnungXpbeute();
 
-							_aiPlayer.setzeAIPlayerXP(xpanzahl);//XP und LVL Test
+							_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
 
-							prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+							//prüfeLVLCap(_aiPlayer.holeEXP());
 
 							if ((_Mindesteinsatz * 2) > _MultiCap)
 							{
@@ -1084,9 +1093,9 @@ void Tisch::AIMenuePrint()
 
 								berechnungXpbeute();
 
-								_aiPlayer.setzeAIPlayerXP(xpanzahl);//XP und LVL Test
+								_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
 
-								prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+								//prüfeLVLCap(_aiPlayer.holeEXP());
 
 								if ((_Mindesteinsatz * 2) > _MultiCap)
 								{
@@ -1114,15 +1123,15 @@ void Tisch::AIMenuePrint()
 								puffer = _Mindesteinsatz * 2;
 
 
-								_aiPlayer.setzeAIPlayerKonto(puffer);
+								_aiPlayer.setzeKonto(puffer);
 
 								_RundeGewonnen = true;
 
 								berechnungXpbeute();
 
-								_aiPlayer.setzeAIPlayerXP(xpanzahl);
+								_aiPlayer.setzeEXP(xpanzahl);
 
-								prüfeLVLCap(_aiPlayer.holeAIPlayerXP());
+								//prüfeLVLCap(_aiPlayer.holeEXP());
 
 								_Mindesteinsatz = _setzeAufSchwarz;
 
@@ -1134,7 +1143,7 @@ void Tisch::AIMenuePrint()
 					}
 					
 				}
-				system("CLS");
+				//system("CLS");
 
 				
 				for (string n : _vectorDaten)
@@ -1150,22 +1159,23 @@ void Tisch::printAiMainMenu()
 	//----------------------------------------------------------------------------------Menue
 
 	printf("%s\n", string(95, '#').c_str());
-	printf("\n\nMit wie viel Geld starten wir? : "); cin >> _einsatzAIP; _aiPlayer.setzeAIPlayerKonto(_einsatzAIP);
+	printf("\n\nMit wie viel Geld starten wir? : "); cin >> _einsatzAIP; _aiPlayer.setzeKonto(_einsatzAIP);
 	printf("\nDer starteinsatz wir beim verlust multipliziert nach dem Martingalprinzip.");
 	printf("\nWie gross sollen der Starteinsatz sein? :"); cin >> _Mindesteinsatz;
 	printf("\nWie hoch ist das Multiplikations Cap? :"); cin >> _MultiCap;
+	printf("\nWie hoch soll der Gewinn sein? :"); cin >> _gewinnAIP;
 	printf("\nMit welcher Farbe starten wir?: (R)ot oder (S)chwarz"); cin >> _farbe;
 
 	//----------------------------------------------------------------------------------Menue
 }
 void Tisch::cleanupAIPlayer()
 {
-	float zero = NULL;
-	unsigned short zeroint = 0;
+	double zero = 0.0;
+	unsigned int zeroint = 0;
 	unsigned long zerolong = 0;
-	_aiPlayer.setzeAIPlayerKonto(zero);
-	_aiPlayer.setzeAIPlayerLVL(zeroint);
-	_aiPlayer.setzeAIPlayerXP(zero);
+	_aiPlayer.setzeKonto(zero);
+	_aiPlayer.setzeLVL(zeroint);
+	_aiPlayer.setzeEXP(zero);
 
 	_setzeAufRot = zero;
 	_setzeAufSchwarz = zero;
@@ -1181,31 +1191,31 @@ void Tisch::cleanupAIPlayer()
 	_gewonnenAufSchwarz = zero;
 	_verlorenAufRot = zero;
 	_verlorenAufSchwarz = zero;
-	
+	_vectorDaten.clear();
 
 }
 void Tisch::printXpBerechnungGewinn()
 {
 	//----------------------------------------------------------------------------------Menue
-	printf("%s|\n\n%s|XPErhalten: %0.1f \n\n%s|XPMulti: %0.2f%% \n\n%s|BonusMulti: %0.1f%% \n\n", string(24, '*').c_str(), string(24, '*').c_str(), xpanzahl, string(24, '*').c_str(), Multiplikator, string(24, '*').c_str(), xpBonus);
+	printf("%s|\n\n%s|XPErhalten: %0.1f \n\n%s|XPMulti: %0.f%% \n\n%s|BonusMulti: %0.1f%% \n\n", string(24, '*').c_str(), string(24, '*').c_str(), xpanzahl, string(24, '*').c_str(), Multiplikator, string(24, '*').c_str(), xpBonus);
 	printf("%s|Gespielte runden: %c \n\n", string(24, '*').c_str(), _gespielteSpiele);
 	printf("%s|RED: %d Black: %d Zero: %d \n\n", string(24, '*').c_str(), _zahlRot, _zahlSchwarz, _zahlZero);
-	printf("%s|Ai Konto: %0.1f \n\n", string(24, '*').c_str(), _aiPlayer.holeAIPlayerKonto());
+	printf("%s|Ai Konto: %0.1f \n\n", string(24, '*').c_str(), _aiPlayer.holeKonto());
 	printf("%s|Ai Einsatz: %0.1f \n\n", string(24, '*').c_str(), _Mindesteinsatz);
-	printf("%s|Ai LVL: %u \n\n", string(24, '*').c_str(), _aiPlayer.holeAIPlayerLVL());
-	printf("%s|Ai XP: %0.1f \n\n", string(24, '*').c_str(), _aiPlayer.holeAIPlayerXP());
+	printf("%s|Ai LVL: %u \n\n", string(24, '*').c_str(), _aiPlayer.holeLVL());
+	printf("%s|Ai XP: %0.0f \n\n", string(24, '*').c_str(), _aiPlayer.holeEXP());
 	//----------------------------------------------------------------------------------Menue
 }
 void Tisch::printXpBerechnungVerlust()
 {
 	//----------------------------------------------------------------------------------Menue
-	printf("%s|\n\n%s|XPErhalten: %0.1f \n\n%s|XPMulti: %0.2f%% \n\n%s|BonusMulti: %0.1f%% \n\n", string(24, '*').c_str(), string(24, '*').c_str(), xpanzahl, string(24, '*').c_str(), Multiplikator, string(24, '*').c_str(), xpBonus);
+	printf("%s|\n\n%s|XPErhalten: %0.1f \n\n%s|XPMulti: %0.1f%% \n\n%s|BonusMulti: %0.1f%% \n\n", string(24, '*').c_str(), string(24, '*').c_str(), xpanzahl, string(24, '*').c_str(), Multiplikator, string(24, '*').c_str(), xpBonus);
 	printf("%s|Gespielte runden: %d \n\n", string(24, '*').c_str(), _gespielteSpiele);
 	printf("%s|RED: %d Black: %d Zero: %d\n\n", string(24, '*').c_str(), _zahlRot, _zahlSchwarz, _zahlZero);
-	printf("%s|Ai Konto: %0.1f \n\n", string(24, '*').c_str(), _aiPlayer.holeAIPlayerKonto());
+	printf("%s|Ai Konto: %0.1f \n\n", string(24, '*').c_str(), _aiPlayer.holeKonto());
 	printf("%s|Ai Einsatz: %0.1f \n\n", string(24, '*').c_str(), _Mindesteinsatz);
-	printf("%s|Ai LVL: %u \n\n", string(24, '*').c_str(), _aiPlayer.holeAIPlayerLVL());
-	printf("%s|Ai XP: %0.1f \n\n", string(24, '*').c_str(), _aiPlayer.holeAIPlayerXP());
+	printf("%s|Ai LVL: %u \n\n", string(24, '*').c_str(), _aiPlayer.holeLVL());
+	printf("%s|Ai XP: %0.0f \n\n", string(24, '*').c_str(), _aiPlayer.holeEXP());
 	//----------------------------------------------------------------------------------Menue
 }
 void Tisch::printGewinnVerlust(unsigned short int c)
