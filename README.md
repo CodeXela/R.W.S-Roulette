@@ -29,7 +29,7 @@
 	
 		- [x] Erfahrungspunkte, Gesamtuebersicht
 		- [x] Erfahrungspunkte, Bonus bei hoeherem Einsatz
-		- [x] Erfahrungspunkte, Fortschrit und LVL System
+		- [x] Erfahrungspunkte, Fortschritt und LVL System
 	
 		- [x] Spiele gespielt
 		- [x] Spiele verloren und gewonnen
