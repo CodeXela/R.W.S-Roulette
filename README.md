@@ -27,12 +27,12 @@
 		- [x] Geldmittel Gesamtuebersicht
 		- [x] Geldmittel, Verluste und Gewinne
 	
-		- [x] Erfahrungpunkte, Gesamtuebersicht
-		- [x] Erfahrungpunkte, Bonus bei hoeherem Einsatz
-		- [x] Erfahrungpunkte, Fortschrit und LVL System
+		- [x] Erfahrungspunkte, Gesamtuebersicht
+		- [x] Erfahrungspunkte, Bonus bei hoeherem Einsatz
+		- [x] Erfahrungspunkte, Fortschrit und LVL System
 	
 		- [x] Spiele gespielt
-		- [x] Spiele Verloren und gewonnen
+		- [x] Spiele verloren und gewonnen
 
 
    3. :floppy_disk:Export:
@@ -57,7 +57,7 @@
 		- [ ] Advanced Server
 
 
-   6. :desktop_computer:Die Berechnung der Wahrscheinlichkeit beim Setzen auf die verschiedenen Wettarten:
+   6. :desktop_computer:Die Berechnung der Wahrscheinlichkeit beim setzen auf die verschiedenen Wettarten:
 
 		- [ ] Einfache Chancen  	1 : 1 
 		- [ ] Dutzende, Kolonnen  	2 : 1
