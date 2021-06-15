@@ -18,7 +18,7 @@ Ziele:
 	Basic Client
 	Basic Server
 
- 1.Die Berechnung der Wahrscheinlichkeit beim Setzen auf die verschiedenen Wettarten (Future Development): 
+ 1. Die Berechnung der Wahrscheinlichkeit beim Setzen auf die verschiedenen Wettarten (Future Development): 
 
 	Einfache Chancen  		1 : 1  [Done]
 	Dutzende, Kolonnen  		2 : 1
@@ -43,7 +43,7 @@ Ziele:
 	Advanced Menue
 		
 
- 4.Single & Multiplayer in ASCII Style (Future Development): 
+ 4. Single & Multiplayer in ASCII Style (Future Development): 
  
 	Single Player   [Done]
  
