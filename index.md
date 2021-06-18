@@ -1,4 +1,4 @@
-#  :slot_machine:R.W.Simulator
+#  R.W.Simulator
 ## auch "Roulette Wahrscheinlichkeits Simulator" genannt.
 ## Zum Projekt:
 
@@ -8,9 +8,9 @@
 	
 ###### Anregungen und Hilfestellungen sind erwuenscht.
 
-## :world_map:Ziele:
+## Ziele:
 
-   1. :gear:Grundgeruest:
+   1. Grundgeruest:
 	
 		 - [x] Basic Framework
 		
@@ -23,7 +23,7 @@
 		 - [ ] Basic Server
 
 
-   2. :bar_chart:Statistik und Auswertung:
+   2. Statistik und Auswertung:
 	
 		- [x] Geldmittel Gesamtuebersicht
 		- [x] Geldmittel, Verluste und Gewinne
@@ -36,12 +36,12 @@
 		- [x] Spiele verloren und gewonnen
 
 
-   3. :floppy_disk:Export:
+   3. Export:
  
  		- [x] CSV
 	
 
-   4. :computer:Single & Multiplayer in ASCII Style:
+   4. Single & Multiplayer in ASCII Style:
 
 		- [X] Single Player 
 		- [X] AI Player
@@ -49,7 +49,7 @@
 	
 		
 
-   5. :balance_scale:Optimierung:
+   5. Optimierung:
   
 		- [ ] Advanced Framework
 		- [ ] Advanced Menue
@@ -58,7 +58,7 @@
 		- [ ] Advanced Server
 
 
-   6. :desktop_computer:Die Berechnung der Wahrscheinlichkeit beim setzen auf die verschiedenen Wettarten:
+   6. Die Berechnung der Wahrscheinlichkeit beim setzen auf die verschiedenen Wettarten:
 
 		- [ ] Einfache Chancen  	1 : 1 
 		- [ ] Dutzende, Kolonnen  	2 : 1
