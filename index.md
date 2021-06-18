@@ -6,7 +6,8 @@
 ### Mann kann selber im Einzelspieler Modus gegen die Casino-Bank spielen oder den AI-Spieler automatisch spielen lassen.
 ### Der AI-Spieler soll mit der Zeit selber lernen zu spielen und Profite zu generieren.
 ### Daten werden Exportiert und können gegengeprüft werden.
-### Mal sehen was die Zukunft bringt ;)
+### Projekt Ziele findest Du auf [GitHub](https://github.com/CodeXela/Cplusplus-Roulette)
+
 
 	Dieses Projekt dient ausschließlich zum Erlernen der C++ Programmiersprache.
 	Ich rate jedem davon ab, diesen Simulator als Unterstützung beim realem Geldeinsatz zu verwenden!
