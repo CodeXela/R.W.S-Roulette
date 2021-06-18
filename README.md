@@ -1,12 +1,4 @@
 #  :slot_machine:R.W.Simulator
-## Zum Projekt:
-
-	Roulette Wahrscheinlichkeitssimulator 
-	Aktuelle Version: 0.105
-	Datum: 14.06.2021
-	
-###### Anregungen und Hilfestellungen sind erwuenscht.
-
 ## :world_map:Ziele:
 
    1. :gear:Grundgeruest:
