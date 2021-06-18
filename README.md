@@ -1,52 +1,69 @@
-#  RGW Simulator
-
-Anregungen und Hilfestellungen sind erwuenscht.
-
-Zum Projekt:
+#  :slot_machine:RGW Simulator
+## Zum Projekt:
 
 	Roulette Wahrscheinlichkeitssimulator 
-	Aktuelle Version: 0.104
-	Datum: 07.06.2021
-
-Ziele:
-
- 0. Grundgeruest (UnderConstruction):
+	Aktuelle Version: 0.105
+	Datum: 14.06.2021
 	
-	Basic Framework
-	Basic Menue
+###### Anregungen und Hilfestellungen sind erwuenscht.
 
-	Basic Client
-	Basic Server
+## :world_map:Ziele:
 
- 1.Die Berechnung der Wahrscheinlichkeit beim Setzen auf die verschiedenen Wettarten (Future Development): 
-
-	Einfache Chancen  		1 : 1  [Done]
-	Dutzende, Kolonnen  	2 : 1
-	Transversale simple 	5 : 1
-	Carré 					8 : 1
-	Transversale pleine    11 : 1
-	Cheval 				   17 : 1
-	Plein  				   35 : 1
-
- 2. Statistik und Auswertung (Future Development):
+   1. :gear:Grundgeruest:
 	
-	Geldmittel Gesamtuebersicht
-	Geldmittel, Verluste und Gewinne
+		- [x] Basic Framework
+		
+		- [x] Basic Menue
+			- [x] Single Player
+			- [x] Ai Player
+			- [ ] Multi Player
 	
-	Spiele gespielt
-	Spiele Verloren und gewonnen
-	
+		- [ ] Basic Client
+		- [ ] Basic Server
 
- 3. Automatisches Spielen (Future Development):
+
+   2. :bar_chart:Statistik und Auswertung:
+	
+		- [x] Geldmittel Gesamtuebersicht
+		- [x] Geldmittel, Verluste und Gewinne
+	
+		- [x] Erfahrungspunkte, Gesamtuebersicht
+		- [x] Erfahrungspunkte, Bonus bei hoeherem Einsatz
+		- [x] Erfahrungspunkte, Fortschritt und LVL System
+	
+		- [x] Spiele gespielt
+		- [x] Spiele verloren und gewonnen
+
+
+   3. :floppy_disk:Export:
  
-	Advanced Framework
-	Advanced Menue
+ 		- [x] CSV
+	
+
+   4. :computer:Single & Multiplayer in ASCII Style:
+
+		- [X] Single Player 
+		- [X] AI Player
+		- [ ] Multi Player
+	
 		
 
- 4.Single & Multiplayer in ASCII Style (Future Development): 
- 
-	Single Player   [Done]
- 
-	Advanced Client
-	Advanced Server
- 
+   5. :balance_scale:Optimierung:
+  
+		- [ ] Advanced Framework
+		- [ ] Advanced Menue
+
+		- [ ] Advanced Client
+		- [ ] Advanced Server
+
+
+   6. :desktop_computer:Die Berechnung der Wahrscheinlichkeit beim setzen auf die verschiedenen Wettarten:
+
+		- [ ] Einfache Chancen  	1 : 1 
+		- [ ] Dutzende, Kolonnen  	2 : 1
+		- [ ] Transversale simple 	5 : 1
+		- [ ] CarrÃ© 			8 : 1
+		- [ ] Transversale pleine    	11 : 1
+		- [ ] Cheval 			17 : 1
+		- [ ] Plein  			35 : 1
+
