@@ -41,19 +41,51 @@ private:
 
 
 	//print Menue
-	void singelPlayerprint();
-
-	void MenueAbfrageprint();
-
-	void setzeAufRotprint();
-
-	void setzeAufSchwarzprint();
-
-	void setzeAufZahlprint();
-
+	void MenueAbfragePrint();
+	void singelPlayerPrint();
+	void printAiMainMenu();
 	void AIMenuePrint();
 
-	void printAiMainMenu();
+	//print Einsatzarten
+	void setzeAufRotPrint();
+	void setzeAufSchwarzPrint();
+	void setzeAufZahlPrint();
+	
+	void setzeAufUngeradePrint();
+	void setzeAufGeradePrint();
+	void setzeAufHighPrint();
+	void setzeAufLowPrint();
+	void setzeAufDutzen1_12Print();
+	void setzeAufDutzen2_12Print();
+	void setzeAufDutzen3_12Print();
+	void setzeAufSpalte_1Print();
+	void setzeAufSpalte_2Print();
+	void setzeAufSpalte_3Print();
+
+	void setzeAufQuadrat_1Print();
+	void setzeAufQuadrat_2Print();
+	void setzeAufQuadrat_3Print();
+	void setzeAufQuadrat_4Print();
+	void setzeAufQuadrat_5Print();
+	void setzeAufQuadrat_6Print();
+	void setzeAufQuadrat_7Print();
+	void setzeAufQuadrat_8Print();
+	void setzeAufQuadrat_9Print();
+	void setzeAufQuadrat_10Print();
+	void setzeAufQuadrat_11Print();
+	void setzeAufQuadrat_12Print();
+	void setzeAufQuadrat_13Print();
+	void setzeAufQuadrat_14Print();
+	void setzeAufQuadrat_15Print();
+	void setzeAufQuadrat_16Print();
+	void setzeAufQuadrat_17Print();
+	void setzeAufQuadrat_18Print();
+	void setzeAufQuadrat_19Print();
+	void setzeAufQuadrat_20Print();
+	void setzeAufQuadrat_21Print();
+	void setzeAufQuadrat_22Print();
+
+	
 
 	void cleanupAIPlayer();
 
@@ -92,7 +124,7 @@ private:
 
 	bool _RundeGewonnen;
 
-	bool _Richtig;
+	bool _Richtig = false;
 
 	//Rot & Schwarz entscheidung
 	string _auswahlWahl="KEINE";
@@ -152,12 +184,8 @@ private:
 	/*int _Width =0;
 	int _Height =0;*/
 
-	int kugelgefallen = 0;
-	const int anzahl = 8;
-	//Zahlen für Farben (zum testen über Heap)
-	int *rot = new int[18]{ 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
-	int *schwarz = new int[18]{ 2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35 };
-
-	char *name = new char[anzahl];
+	int _kugelgefallen = 0;
+	float _version=0.105f;
+	
 };
 

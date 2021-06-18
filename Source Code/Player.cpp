@@ -14,6 +14,42 @@ void Player::initPlayer(double konto, unsigned int lvl, unsigned int exp, unsign
 
 Player::~Player()
 {
+	delete[]_rot;
+	delete[]_schwarz;
+	delete[]_ungerade;
+	delete[]_gerade;
+	delete[]_high;
+	delete[]_low;
+	delete[]_dutzen1_12;
+	delete[]_dutzen2_12;
+	delete[]_dutzen3_12;
+	delete[]_spalte_1;
+	delete[]_spalte_2;
+	delete[]_spalte_3;
+	delete[]_quadrat_1;
+	delete[]_quadrat_2;
+	delete[]_quadrat_3;
+	delete[]_quadrat_4;
+	delete[]_quadrat_5;
+	delete[]_quadrat_6;
+	delete[]_quadrat_7;
+	delete[]_quadrat_8;
+	delete[]_quadrat_9;
+	delete[]_quadrat_10;
+	delete[]_quadrat_11;
+	delete[]_quadrat_12;
+	delete[]_quadrat_13;
+	delete[]_quadrat_14;
+	delete[]_quadrat_15;
+	delete[]_quadrat_16;
+	delete[]_quadrat_17;
+	delete[]_quadrat_18;
+	delete[]_quadrat_19;
+	delete[]_quadrat_20;
+	delete[]_quadrat_21;
+	delete[]_quadrat_22;
+
+	
 }
 
 void Player::setzeKonto(double& konto)
@@ -139,6 +175,506 @@ void Player::setzeEXP(double& exp)
 
 			_EXP -= 20000;
 			_LVL++;
+		}
+	}
+}
+
+bool Player::setzeAufRot(int &kugelgefallen)
+{
+	for (int i = 0; i < 18; i++)
+	{
+		if (kugelgefallen == _rot[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Player::setzeAufSchwarz(int& kugelgefallen)
+{
+	for (int i = 0; i < 18; i++)
+	{
+		if (kugelgefallen == _schwarz[i])
+		{
+			return true;
+		}
+	}
+	
+	return false;
+}
+
+bool Player::setzeAufUngerade(int& kugelgefallen)
+{
+	for (int i = 0; i < 18; i++)
+	{
+		if (kugelgefallen == _ungerade[i])
+		{
+			return true;
+		}
+	
+	}
+	return false;
+}
+
+bool Player::setzeAufGerade(int& kugelgefallen)
+{
+	for (int i = 0; i < 18; i++)
+	{
+		if (kugelgefallen == _gerade[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Player::setzeAufHigh(int& kugelgefallen)
+{
+	for (int i = 0; i < 18; i++)
+	{
+		if (kugelgefallen == _high[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufLow(int& kugelgefallen)
+{
+	for (int i = 0; i < 18; i++)
+	{
+		if (kugelgefallen == _low[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufDutzen1_12(int& kugelgefallen)
+{
+	for (int i = 0; i < 12; i++)
+	{
+		if (kugelgefallen == _dutzen1_12[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufDutzen2_12(int& kugelgefallen)
+{
+	for (int i = 0; i < 12; i++)
+	{
+		if (kugelgefallen == _dutzen2_12[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufDutzen3_12(int& kugelgefallen)
+{
+	for (int i = 0; i < 12; i++)
+	{
+		if (kugelgefallen == _dutzen3_12[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufSpalte_1(int& kugelgefallen)
+{
+	for (int i = 0; i < 12; i++)
+	{
+		if (kugelgefallen == _spalte_1[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufSpalte_2(int& kugelgefallen)
+{
+	for (int i = 0; i < 12; i++)
+	{
+		if (kugelgefallen == _spalte_2[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufSpalte_3(int& kugelgefallen)
+{
+	for (int i = 0; i < 12; i++)
+	{
+		if (kugelgefallen == _spalte_3[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_1(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_1[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_2(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_2[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_3(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_3[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_4(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_4[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_5(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_5[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_6(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_6[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_7(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_7[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_8(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_8[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_9(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_9[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_10(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_10[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_11(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_11[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_12(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_12[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_13(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_13[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_14(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_14[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_15(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_15[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_16(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_16[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_17(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_17[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_18(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_18[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_19(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_19[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_20(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_20[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_21(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_21[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
+		}
+	}
+}
+
+bool Player::setzeAufQuadrat_22(int& kugelgefallen)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (kugelgefallen == _quadrat_22[i])
+		{
+			return true;
+		}
+		else {
+
+			return false;
 		}
 	}
 }

@@ -35,19 +35,11 @@ Tisch::Tisch()//Konstruktor der alle beim start mit daten befüllt
 
 	InitTisch(false,false,false,false,0.0,0.0,0.0,0.0,0.0,0,0.0,0.0,0.0,0u);//Statistik startwerte (MERKE*ersetzen mit eingabe)
 	
-	//_spieler.initSpieler("NONAME",1000.0f,0.0f,0,0.0f);// Spieler startwerte (MERKE*ersetzen mit eingabe)
-
-	_casinoBank.initCB(1000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
+	_casinoBank.initCB(100000.0f);// Casinobank wird aufgefüllt(MERKE*ersetzen mit eingabe)
 	
-	//_aiPlayer.initAIPlayer(250.0f, 0.0f, 0, 0.0f);// Aispieler wird aufgefüllt(MERKE*ersetzen mit eingabe)
-
 	_aiPlayer.initPlayer(0,0,0,0);
 	_spieler.initPlayer(1000,0,0,0);
 
-	//cout <<"AIPlayer: " << _aiPlayer.holeAIPlayerKonto();
-	cout <<"Player AIplayer: " <<_aiPlayer.holeKonto();
-	cout <<"Spieler: " << _spieler.holeKonto();
-	cout << "Player Spieler: " << _spieler.holeKonto();
 }
 void Tisch::spieleSpiel() //wird in der mainfunktion gerufen und startet das spiel
 {
@@ -90,28 +82,28 @@ void Tisch::Print()
 		{
 		case MAIN_MENU:
 		
-			MenueAbfrageprint();
+			MenueAbfragePrint();
 			break;
 
 		case SINGLE_PLAYER:
 			
-			singelPlayerprint();
+			singelPlayerPrint();
 			
 			switch (setzen)
 			{
 			case SETZE_ROT:
 
-				setzeAufRotprint();
+				setzeAufRotPrint();
 				break;
 
 			case SETZE_SCHWARZ:
 
-				setzeAufSchwarzprint();
+				setzeAufSchwarzPrint();
 				break;
 
 			case SETZE_ZAHL:
 
-				setzeAufZahlprint();
+				setzeAufZahlPrint();
 				break;
 
 			case ZURUECK:
@@ -131,7 +123,7 @@ void Tisch::Print()
 		case AI_PLAYER:
 
 			AIMenuePrint();
-
+			optionen = MAIN_MENU;
 			break;
 
 		case OPTION:
@@ -159,9 +151,8 @@ void Tisch::Print()
 		}
 	} 
 
-	delete []rot;
-	delete []schwarz;
-	delete []name;
+	//Bereinige Zeiger für Einsatzarten
+
 
 	printf("Speicher erfolgreich bereinigt");
 
@@ -255,60 +246,6 @@ void Tisch::Speichern()
 //
 //
 //}
-//void Tisch::prüfeLVLCap(float lvlCapP)
-//{
-//	
-//
-//	halteFest = lvlCapP;
-//
-//	if (lvlCapP > 0)
-//	{
-//		if (_spieler.holeLVL() >= 0 && _spieler.holeLVL() <= 5)
-//		{
-//			
-//			_lvlCap = (halteFest/1000)*100;
-//	
-//		}
-//		else if (_spieler.holeLVL() >= 6 && _spieler.holeLVL() <= 10)
-//		{
-//			_lvlCap = (halteFest / 2000) * 100;
-//		}
-//		else if (_spieler.holeLVL() >= 11 && _spieler.holeLVL() <= 15)
-//		{
-//			_lvlCap = (halteFest / 3000) * 100;
-//		}
-//		else if (_spieler.holeLVL() >= 16 && _spieler.holeLVL() <= 20)
-//		{
-//			_lvlCap = (halteFest / 4000) * 100;
-//		}
-//		else if (_spieler.holeLVL() >= 21 && _spieler.holeLVL() <= 25)
-//		{
-//			_lvlCap = (halteFest / 5000) * 100;
-//		}
-//		else if (_spieler.holeLVL() >= 26 && _spieler.holeLVL() <= 30)
-//		{
-//			_lvlCap = (halteFest / 6000) * 100;
-//		}
-//		else if (_spieler.holeLVL() >= 31 && _spieler.holeLVL() <= 35)
-//		{
-//			_lvlCap = (halteFest / 7000) * 100;
-//		}
-//		else if (_spieler.holeLVL() >= 36 && _spieler.holeLVL() <= 40)
-//		{
-//			_lvlCap = (halteFest / 8000) * 100;
-//		}
-//		else if (_spieler.holeLVL() >= 41 && _spieler.holeLVL() <= 45)
-//		{
-//			_lvlCap = (halteFest / 9000) * 100;
-//		}
-//		else if (_spieler.holeLVL() >= 46 && _spieler.holeLVL() <= 50)
-//		{
-//			_lvlCap = (halteFest / 10000) * 100;
-//		}
-//		
-//	}
-//
-//}
 void Tisch::legeDatenAb(string runde,string skonto,string konto, string eisatz, string farbe, string casinobank, string gewonnen,string kugel,string gewonnenauf, string lvl, string exp, string expAnzahl, string multi, string expBonus)
 {
 	
@@ -325,7 +262,7 @@ void Tisch::berechnungXpbeute()
 
 		//printXpBerechnungVerlust();
 
-		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeKonto())),to_string(int(_Mindesteinsatz)),_auswahlWahl,to_string(int(_casinoBank.holeBank())), to_string( _RundeGewonnen), to_string(kugelgefallen), to_string(int(_auswahlWahl == "ROT" ? _verlorenAufRot : _verlorenAufSchwarz)),to_string(_aiPlayer.holeLVL()),to_string(_aiPlayer.holeEXP()), to_string(xpanzahl),to_string(Multiplikator),to_string(xpBonus));
+		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeKonto())),to_string(int(_Mindesteinsatz)),_auswahlWahl,to_string(int(_casinoBank.holeBank())), to_string( _RundeGewonnen), to_string(_kugelgefallen), to_string(int(_auswahlWahl == "ROT" ? _verlorenAufRot : _verlorenAufSchwarz)),to_string(_aiPlayer.holeLVL()),to_string(_aiPlayer.holeEXP()), to_string(xpanzahl),to_string(Multiplikator),to_string(xpBonus));
 	}
 	else if(_RundeGewonnen == true) {
 
@@ -337,17 +274,18 @@ void Tisch::berechnungXpbeute()
 
 		//printXpBerechnungGewinn();
 		
-		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeKonto())), to_string(int(_Mindesteinsatz)), _auswahlWahl, to_string(int(_casinoBank.holeBank())), to_string(_RundeGewonnen),to_string(kugelgefallen),to_string(int(_auswahlWahl == "ROT" ? _gewonnenAufRot : _gewonnenAufSchwarz)),to_string(_aiPlayer.holeLVL()), to_string(_aiPlayer.holeEXP()), to_string(xpanzahl), to_string(Multiplikator), to_string(xpBonus));
+		legeDatenAb(to_string(_gespielteSpiele), to_string(int (halteKonto)), to_string(int(_aiPlayer.holeKonto())), to_string(int(_Mindesteinsatz)), _auswahlWahl, to_string(int(_casinoBank.holeBank())), to_string(_RundeGewonnen),to_string(_kugelgefallen),to_string(int(_auswahlWahl == "ROT" ? _gewonnenAufRot : _gewonnenAufSchwarz)),to_string(_aiPlayer.holeLVL()), to_string(_aiPlayer.holeEXP()), to_string(xpanzahl), to_string(Multiplikator), to_string(xpBonus));
 	}
 }
 
-void Tisch::MenueAbfrageprint()
+void Tisch::MenueAbfragePrint()
 {
-
+	string tName;//Puffer für name
 	while (_Richtig != true)// TO DO 05.11<---------------------------------------<<<<
 	{
-		printf("\n\n\n\n\n             Bitte Spieler Name eingeben:");
-		cin >> name;
+		printf("\n\n\n\n\n\t\t\tBitte Spieler Name eingeben:");
+
+		cin >> tName;
 
 		if (cin.fail())
 		{
@@ -368,12 +306,12 @@ void Tisch::MenueAbfrageprint()
 
 	}// TO DO 05.11<---------------------------------------<<<<
 
-	_spieler.setzeSpielerName(name);
+	_spieler.setzeSpielerName(tName);
 	system("CLS");
 	//----------------------------------------------------------------------------------Menue
 	printf("%s\n", string(95, '#').c_str());
-	cout << "                                 "; printf("RWS v0.103\n\n\n\n\n");
-	printf("                                 (1)Single Player\n                                 (2)AI Player\n                                 (3)Option\n                                 (4)Exit\n");
+	printf("\t\t\t\t\tRWS v%.3f\n\n\n\n\n",_version);
+	printf("\t\t\t\t\t(1)Single Player\n\t\t\t\t\t(2)AI Player\n\t\t\t\t\t(3)Option\n\t\t\t\t\t(4)Exit\n");
 	//----------------------------------------------------------------------------------Menue
 
 	cin >> optionen;
@@ -398,24 +336,21 @@ void Tisch::MenueAbfrageprint()
 	system("CLS");
 
 }
-void Tisch::singelPlayerprint()
+void Tisch::singelPlayerPrint()
 {
 	if (_spieler.holeKonto() >= _Mindesteinsatz)
 	{
-		
-		
-		//----------------------------------------------------------------------------------Menue
-		printf("%s\n", string(95, '#').c_str());
-		cout << "  Spieler Name:  " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
-		printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeKonto()); printf("                  Mindesteinsatz:        %0.1f Cent   \n", _Mindesteinsatz);
-		printf("  XP Fortschrit:   %0.0f    %u%%                                                                      \n", _spieler.holeEXP(), _lvlCap);
-		printf("%s\n", string(95, '#').c_str());
-		printf("\n\n\n\n\n\n\n\n\n\n\n");
-		printf("\n\n\n\n\n\n\n\n\n\n\n");
-		printf("                                (1)Rot oder (2)Schwarz (3)Zahl (4)Zurueck \n");
-		printf("%s\n", string(95, '#').c_str());
-		//----------------------------------------------------------------------------------Menue
 
+		//----------------------------------------------------------------------------------Menue
+		printf("%s\n", string(95, '#').c_str());
+		printf("\tSpieler Name:%s\t\t\t\tCasino Bank:%.1f\n\tSpieler Konto:%.1f\t\t\t\tMindesteinsatz: %.1f\n\tLVL:%i\tEXP:%.2f\tCap:%i\t\t\t\tCasino Hausvorteil: 2,70%%\n",_spieler.holeSpielerName().c_str(), _casinoBank.holeBank(), _spieler.holeKonto(), _Mindesteinsatz, _spieler.holeLVL(), _spieler.holeEXP(), _spieler.holeLVLCap());
+		printf("%s\n", string(95, '#').c_str());
+		printf("%sAuszahlung: 2 zu 1%s%sAuszahlung: 8 zu 1%s%sAuszahlung: 2 zu 1%s\n", string(3, '-').c_str(), string(3, '-').c_str(), string(9, '-').c_str(), string(10, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str());
+		printf("(D1)D-1,2,3,4,5,6,7,8\t|(1)Q-1,2,4,5     |(2)Q-2,3,4,6     |(S1)S-1,4,7,10,13,16,19,22\n(D1)D-9,10,11,12\t%s(S1)S-25,28,31,34\n(D2)D-13,14,15,16,17,18\t|(3)Q-4,5,7,8     |(4)Q-5,6,8,9     |(S2)S-2,5,8,11,14,17,20\n(D2)D-19,20,21,22,23,24\t%s(S2)S-23,26,29,32,35\n(D3)D-25,26,27,28,29,30\t|(5)Q-7,8,10,11   |(6)Q-8,9,11,12   |(S3)S-3,6,9,12,15,18,21,24\n(D3)D-31,32,33,34,35,36\t%s(S3)S-27,30,33,36\n%sAuszahlung: 1 zu 1%s|(7)Q-10,11,13,14 |(8)Q-11,12,14,15 |%sAuszahlung: 1 zu 1%s\n(Lo)L-1,2,3,4,5,6,7,8,9\t%s(Ro)R-1,3,5,7,9,12,14,16,18,19\n(Lo)L-10,11,12,13,14,15\t|(9)Q-13,14,16,17 |(10)Q-14,15,17,18|(Ro)R-21,23,25,27,30,32,34,36\n(Lo)L-16,17,18\t\t%s(Sc)S-2,4,6,8,10,11,13,15,17,20\n(Hi)H-19,20,21,22,23,24\t|(11)Q-16,17,19,20|(12)Q-17,18,20,21|(Sc)S-22,24,26,28,29,31,33,35\n(Hi)H-25,26,27,28,29,30\t%s%sAuszahlung: 37 zu 1%s\n(Hi)H-31,32,33,34,35,36\t|(13)Q-19,20,22,23|(14)Q-20,21,23,24|(Z)Setze auf eine Zahl\n%sAuszahlung: 1 zu 1%s%s\n(Un)U-1,3,5,7,9,11,13\t|(15)Q-22,23,25,26|(16)Q-23,24,26,27|\n(Un)U-15,17,19,21,23,25\t%s\n(Un)U-27,29,31,33,35\t|(17)Q-25,26,28,29|(18)Q-26,27,29,30|\n\t\t\t%s\n(Ge)G-2,4,6,8,10,12,14\t|(19)Q-28,29,31,32|(20)Q-29,30,32,33|\n(Ge)G-16,18,20,22,24,26\t%s\n(Ge)G-28,30,32,34,36\t|(21)Q-31,32,34,35|(22)Q-32,33,35,36|\n\t\t\t%s\n",string(37,'-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(3, '-').c_str(), string(3, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str(), string(3, '-').c_str(), string(3, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str());
+		printf("%s\n", string(95, '#').c_str());
+		printf("\t\t(E)Einzelauswahl\t(M)Mehrfachauswahl\t(Q)Zurueck\n");
+		//----------------------------------------------------------------------------------Menue
+		
 		cin >> setzen;
 
 		if (cin.fail() || optionen > 4 || optionen < 0)
@@ -446,22 +381,271 @@ void Tisch::singelPlayerprint()
 		return;
 	}
 }
-void Tisch::setzeAufRotprint()
+void Tisch::AIMenuePrint()
+{
+	double puffer = 0.0;
+
+	system("CLS");
+
+	//cleanupAIPlayer();
+
+	printAiMainMenu();
+
+	_setzeAufRot = _Mindesteinsatz;
+	_setzeAufSchwarz = _Mindesteinsatz;
+
+	_gewinnAIP += _einsatzAIP;
+
+	cin.clear();
+	cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
+	//cin.ignore(CHAR_MAX, '\n');
+
+	switch (_farbe)
+
+			case 'r':
+			case 'R':
+
+				while (_aiPlayer.holeKonto() >= _Mindesteinsatz && _aiPlayer.holeKonto() <= _gewinnAIP)
+				{
+
+					if (_Runde == 'A')//doppeltgemoppelt
+					{
+						//printf("\n%s|Setze auf Rot \n\n", string(24, '*').c_str());
+
+						halteKonto = _aiPlayer.holeKonto();
+
+						halteEinsatz = _Mindesteinsatz;
+
+						_gespielteSpiele++;
+
+						_auswahlWahl = "ROT";
+
+						_aiPlayer.entferneKonto(_Mindesteinsatz);
+
+						_kugelgefallen = _dealer.RolltKugel();
+
+						if (_kugelgefallen == 0)
+						{
+							_zahlZero++;
+
+							//printGewinnVerlust(ZERO);
+
+							_casinoBank.setzeBankKonto(_Mindesteinsatz);
+
+							_verlorenAufRot += _Mindesteinsatz;
+
+							_RundeGewonnen = false;
+
+							berechnungXpbeute();
+
+
+							_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
+
+							//prüfeLVLCap(_aiPlayer.holeEXP());
+
+							if ((_Mindesteinsatz * 2) > _MultiCap)
+							{
+								_Mindesteinsatz = _setzeAufRot;
+							}
+							else {
+
+								_Mindesteinsatz += _Mindesteinsatz;
+							}
+							_Runde = 'B';
+						}
+						else if (_aiPlayer.setzeAufRot(_kugelgefallen))
+						{
+							_zahlRot++;
+
+							//printGewinnVerlust(WINRED);
+
+							_casinoBank.entferneBankKonto(_Mindesteinsatz);
+
+							_gewonnenAufRot += _Mindesteinsatz;
+
+							puffer = _Mindesteinsatz * 2;
+
+							_aiPlayer.setzeKonto(puffer);
+
+							_RundeGewonnen = true;
+
+							berechnungXpbeute();
+
+							_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
+
+							//prüfeLVLCap(_aiPlayer.holeEXP());
+
+							_Mindesteinsatz = _setzeAufRot;
+
+							puffer = 0.0f;
+						}
+						else if (_aiPlayer.setzeAufSchwarz(_kugelgefallen))
+						{
+							_zahlSchwarz++;
+
+							//printGewinnVerlust(LOSEBLACK);
+
+							_casinoBank.setzeBankKonto(_Mindesteinsatz);
+
+							_verlorenAufRot += _Mindesteinsatz;
+
+							_RundeGewonnen = false;
+
+							berechnungXpbeute();
+
+							_aiPlayer.setzeEXP(xpanzahl);
+
+							//prüfeLVLCap(_aiPlayer.holeEXP());
+
+							if ((_Mindesteinsatz * 2) > _MultiCap)
+							{
+								_Mindesteinsatz = _setzeAufRot;
+							}
+							else {
+
+								_Mindesteinsatz += _Mindesteinsatz;
+							}
+
+							_Runde = 'B';
+						}
+
+					}
+					else if (_Runde == 'B')
+					{
+
+						//printf("\n%s|Setze auf Schwarz \n\n", string(24, '*').c_str());
+
+						halteKonto = _aiPlayer.holeKonto();
+
+						halteEinsatz = _Mindesteinsatz;
+
+						_gespielteSpiele++;
+
+						_auswahlWahl = "SCHWARZ";
+
+						_aiPlayer.entferneKonto(_Mindesteinsatz);
+
+						_kugelgefallen = _dealer.RolltKugel();
+
+						if (_kugelgefallen == 0)
+						{
+							_zahlZero++;
+
+							//printGewinnVerlust(ZERO);
+
+							_casinoBank.setzeBankKonto(_Mindesteinsatz);
+
+							_verlorenAufSchwarz += _Mindesteinsatz;
+
+							_RundeGewonnen = false;
+
+							berechnungXpbeute();
+
+							_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
+
+							//prüfeLVLCap(_aiPlayer.holeEXP());
+
+							if ((_Mindesteinsatz * 2) > _MultiCap)
+							{
+								_Mindesteinsatz = _setzeAufSchwarz;
+							}
+							else {
+
+								_Mindesteinsatz += _Mindesteinsatz;
+							}
+							_Runde = 'A';
+						}
+						else if (_aiPlayer.setzeAufRot(_kugelgefallen))
+						{
+							_zahlRot++;
+
+							//printGewinnVerlust(LOSERED);
+
+							_casinoBank.setzeBankKonto(_Mindesteinsatz);
+
+							_verlorenAufSchwarz += _Mindesteinsatz;
+
+							_RundeGewonnen = false;
+
+							berechnungXpbeute();
+
+							_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
+
+							//prüfeLVLCap(_aiPlayer.holeEXP());
+
+							if ((_Mindesteinsatz * 2) > _MultiCap)
+							{
+								_Mindesteinsatz = _setzeAufSchwarz;
+							}
+							else {
+
+								_Mindesteinsatz += _Mindesteinsatz;
+							}
+
+							_Runde = 'A';
+						}
+						else if (_aiPlayer.setzeAufSchwarz(_kugelgefallen))
+						{
+
+							_zahlSchwarz++;
+
+							//printGewinnVerlust(WINBLACK);
+
+							_casinoBank.entferneBankKonto(_Mindesteinsatz);
+
+							_gewonnenAufSchwarz += _Mindesteinsatz;
+
+
+							puffer = _Mindesteinsatz * 2;
+
+
+							_aiPlayer.setzeKonto(puffer);
+
+							_RundeGewonnen = true;
+
+							berechnungXpbeute();
+
+							_aiPlayer.setzeEXP(xpanzahl);
+
+							//prüfeLVLCap(_aiPlayer.holeEXP());
+
+							_Mindesteinsatz = _setzeAufSchwarz;
+
+							puffer = 0.0f;
+
+						}
+
+
+					}
+
+				}
+				//system("CLS");
+
+
+				for (string n : _vectorDaten)
+				{
+					cout << n;
+				}
+				Speichern();
+				getchar();
+}
+
+void Tisch::setzeAufRotPrint()
 {
 	if (_spieler.holeKonto() >= _Mindesteinsatz)
 	{
 		system("CLS");
 		//----------------------------------------------------------------------------------Menue
 		printf("%s\n", string(95, '#').c_str());
-		cout << "  Spieler Name:       " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
-		printf("  Spieler Konto:     %0.1f Euro.", _spieler.holeKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
-		printf("  XP Fortschrit:   %0.0f   %0u%%                                                                 \n", _spieler.holeEXP(), _lvlCap);
+		printf("\tSpieler Name:%s\t\t\t\tCasino Bank:%.1f\n\tSpieler Konto:%.1f\t\t\t\tMindesteinsatz: %.1f\n\tLVL:%i\tEXP:%.2f\tCap:%i\t\t\t\tCasino Hausvorteil: 2,70%%\n", _spieler.holeSpielerName().c_str(), _casinoBank.holeBank(), _spieler.holeKonto(), _Mindesteinsatz, _spieler.holeLVL(), _spieler.holeEXP(), _spieler.holeLVLCap());
 		printf("%s\n", string(95, '#').c_str());
-		printf("\n\n\n\n\n\n\n\n\n\n\n");
-		printf("\n\n\n\n\n\n\n\n\n\n\n");
-		printf("                                Wie viel moechtest Du setzen?\n");
+		printf("%sAuszahlung: 2 zu 1%s%sAuszahlung: 8 zu 1%s%sAuszahlung: 2 zu 1%s\n", string(3, '-').c_str(), string(3, '-').c_str(), string(9, '-').c_str(), string(10, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str());
+		printf("(D1)D-1,2,3,4,5,6,7,8\t|(1)Q-1,2,4,5     |(2)Q-2,3,4,6     |(S1)S-1,4,7,10,13,16,19,22\n(D1)D-9,10,11,12\t%s(S1)S-25,28,31,34\n(D2)D-13,14,15,16,17,18\t|(3)Q-4,5,7,8     |(4)Q-5,6,8,9     |(S2)S-2,5,8,11,14,17,20\n(D2)D-19,20,21,22,23,24\t%s(S2)S-23,26,29,32,35\n(D3)D-25,26,27,28,29,30\t|(5)Q-7,8,10,11   |(6)Q-8,9,11,12   |(S3)S-3,6,9,12,15,18,21,24\n(D3)D-31,32,33,34,35,36\t%s(S3)S-27,30,33,36\n%sAuszahlung: 1 zu 1%s|(7)Q-10,11,13,14 |(8)Q-11,12,14,15 |%sAuszahlung: 1 zu 1%s\n(Lo)L-1,2,3,4,5,6,7,8,9\t%s(Ro)R-1,3,5,7,9,12,14,16,18,19\n(Lo)L-10,11,12,13,14,15\t|(9)Q-13,14,16,17 |(10)Q-14,15,17,18|(Ro)R-21,23,25,27,30,32,34,36\n(Lo)L-16,17,18\t\t%s(Sc)S-2,4,6,8,10,11,13,15,17,20\n(Hi)H-19,20,21,22,23,24\t|(11)Q-16,17,19,20|(12)Q-17,18,20,21|(Sc)S-22,24,26,28,29,31,33,35\n(Hi)H-25,26,27,28,29,30\t%s%sAuszahlung: 37 zu 1%s\n(Hi)H-31,32,33,34,35,36\t|(13)Q-19,20,22,23|(14)Q-20,21,23,24|(Z)Setze auf eine Zahl\n%sAuszahlung: 1 zu 1%s%s\n(Un)U-1,3,5,7,9,11,13\t|(15)Q-22,23,25,26|(16)Q-23,24,26,27|\n(Un)U-15,17,19,21,23,25\t%s\n(Un)U-27,29,31,33,35\t|(17)Q-25,26,28,29|(18)Q-26,27,29,30|\n\t\t\t%s\n(Ge)G-2,4,6,8,10,12,14\t|(19)Q-28,29,31,32|(20)Q-29,30,32,33|\n(Ge)G-16,18,20,22,24,26\t%s\n(Ge)G-28,30,32,34,36\t|(21)Q-31,32,34,35|(22)Q-32,33,35,36|\n\t\t\t%s\n", string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(3, '-').c_str(), string(3, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str(), string(3, '-').c_str(), string(3, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str());
 		printf("%s\n", string(95, '#').c_str());
+		printf("\t\t\t\tWie viel moechtest Du auf \"Rot\" setzen ? \n");
 		//----------------------------------------------------------------------------------Menue
+		
+		
 
 		halteKonto = _spieler.holeKonto();
 
@@ -512,9 +696,9 @@ void Tisch::setzeAufRotprint()
 
 			system("CLS");
 
-			kugelgefallen = _dealer.RolltKugel();
+			_kugelgefallen = _dealer.RolltKugel();
 			
-			if (kugelgefallen == 0)
+			if (_kugelgefallen == 0)
 			{
 
 				_zahlZero++;
@@ -536,16 +720,12 @@ void Tisch::setzeAufRotprint()
 				_setzeAufRot = NULL;
 
 
-			}
-			for (int i = 0; i < 18; i++)
-			{
-				if (kugelgefallen == rot[i])
-				{
+			}else if(_spieler.setzeAufRot(_kugelgefallen)){
 					
 					_zahlRot++;
 
 					//----------------------------------------------------------------------------------Menue
-					printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+					printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 					//----------------------------------------------------------------------------------Menue
 
 					_casinoBank.entferneBankKonto(_setzeAufRot);
@@ -565,14 +745,12 @@ void Tisch::setzeAufRotprint()
 					_setzeAufRot = NULL;
 
 
-				}
-				else if (kugelgefallen == schwarz[i])
-				{
+			}else if (_spieler.setzeAufSchwarz(_kugelgefallen)){
 					
 					_zahlSchwarz++;
 
 					//----------------------------------------------------------------------------------Menue
-					printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+					printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 					//----------------------------------------------------------------------------------Menue
 
 					_casinoBank.setzeBankKonto(_setzeAufRot);
@@ -587,24 +765,21 @@ void Tisch::setzeAufRotprint()
 
 					_setzeAufRot = NULL;
 
-				}
-
 			}
-
 			getchar();
-
 		}
-		else {
-			printf("Du hast zu wenig Geld");
+			
+	}else{
+		printf("Du hast zu wenig Geld");
 
-			getchar();
+		getchar();
 
-			optionen = MAIN_MENU;
-			return;
-		}
+		optionen = MAIN_MENU;
+		return;
 	}
+	
 }
-void Tisch::setzeAufSchwarzprint()
+void Tisch::setzeAufSchwarzPrint()
 {
 	if (_spieler.holeKonto() >= _Mindesteinsatz)
 	{
@@ -612,22 +787,21 @@ void Tisch::setzeAufSchwarzprint()
 
 	//----------------------------------------------------------------------------------Menue
 	printf("%s\n", string(95, '#').c_str());
-	cout << "  Spieler Name:       " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
-	printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeKonto()); printf("                  Mindesteinsatz:        %0.2f Cent   \n", _Mindesteinsatz);
-	printf("  XP Fortschrit:  %0.0f    %0u%%                                                                        \n", _spieler.holeEXP(), _lvlCap);
+	printf("\tSpieler Name:%s\t\t\t\tCasino Bank:%.1f\n\tSpieler Konto:%.1f\t\t\t\tMindesteinsatz: %.1f\n\tLVL:%i\tEXP:%.2f\tCap:%i\t\t\t\tCasino Hausvorteil: 2,70%%\n", _spieler.holeSpielerName().c_str(), _casinoBank.holeBank(), _spieler.holeKonto(), _Mindesteinsatz, _spieler.holeLVL(), _spieler.holeEXP(), _spieler.holeLVLCap());
 	printf("%s\n", string(95, '#').c_str());
-	printf("\n\n\n\n\n\n\n\n\n\n\n");
-	printf("\n\n\n\n\n\n\n\n\n\n\n");
-	printf("                           Wie viel moechtest Du setzen?\n");
+	printf("%sAuszahlung: 2 zu 1%s%sAuszahlung: 8 zu 1%s%sAuszahlung: 2 zu 1%s\n", string(3, '-').c_str(), string(3, '-').c_str(), string(9, '-').c_str(), string(10, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str());
+	printf("(D1)D-1,2,3,4,5,6,7,8\t|(1)Q-1,2,4,5     |(2)Q-2,3,4,6     |(S1)S-1,4,7,10,13,16,19,22\n(D1)D-9,10,11,12\t%s(S1)S-25,28,31,34\n(D2)D-13,14,15,16,17,18\t|(3)Q-4,5,7,8     |(4)Q-5,6,8,9     |(S2)S-2,5,8,11,14,17,20\n(D2)D-19,20,21,22,23,24\t%s(S2)S-23,26,29,32,35\n(D3)D-25,26,27,28,29,30\t|(5)Q-7,8,10,11   |(6)Q-8,9,11,12   |(S3)S-3,6,9,12,15,18,21,24\n(D3)D-31,32,33,34,35,36\t%s(S3)S-27,30,33,36\n%sAuszahlung: 1 zu 1%s|(7)Q-10,11,13,14 |(8)Q-11,12,14,15 |%sAuszahlung: 1 zu 1%s\n(Lo)L-1,2,3,4,5,6,7,8,9\t%s(Ro)R-1,3,5,7,9,12,14,16,18,19\n(Lo)L-10,11,12,13,14,15\t|(9)Q-13,14,16,17 |(10)Q-14,15,17,18|(Ro)R-21,23,25,27,30,32,34,36\n(Lo)L-16,17,18\t\t%s(Sc)S-2,4,6,8,10,11,13,15,17,20\n(Hi)H-19,20,21,22,23,24\t|(11)Q-16,17,19,20|(12)Q-17,18,20,21|(Sc)S-22,24,26,28,29,31,33,35\n(Hi)H-25,26,27,28,29,30\t%s%sAuszahlung: 37 zu 1%s\n(Hi)H-31,32,33,34,35,36\t|(13)Q-19,20,22,23|(14)Q-20,21,23,24|(Z)Setze auf eine Zahl\n%sAuszahlung: 1 zu 1%s%s\n(Un)U-1,3,5,7,9,11,13\t|(15)Q-22,23,25,26|(16)Q-23,24,26,27|\n(Un)U-15,17,19,21,23,25\t%s\n(Un)U-27,29,31,33,35\t|(17)Q-25,26,28,29|(18)Q-26,27,29,30|\n\t\t\t%s\n(Ge)G-2,4,6,8,10,12,14\t|(19)Q-28,29,31,32|(20)Q-29,30,32,33|\n(Ge)G-16,18,20,22,24,26\t%s\n(Ge)G-28,30,32,34,36\t|(21)Q-31,32,34,35|(22)Q-32,33,35,36|\n\t\t\t%s\n", string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(3, '-').c_str(), string(3, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str(), string(3, '-').c_str(), string(3, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str());
 	printf("%s\n", string(95, '#').c_str());
+	printf("\t\t\t\tWie viel moechtest Du auf \"Schwarz\" setzen ? \n");
 	//----------------------------------------------------------------------------------Menue
+
 
 	halteKonto = _spieler.holeKonto();
 
 	cin >> _setzeAufSchwarz;
 
-	if (cin.fail() || _setzeAufSchwarz <= 0)
-	{
+		if (cin.fail() || _setzeAufSchwarz <= 0)
+		{
 		printf("Deine eingabe ist Falsch");
 
 		cin.clear();
@@ -639,71 +813,68 @@ void Tisch::setzeAufSchwarzprint()
 
 		optionen = SINGLE_PLAYER;
 		return;
-	}
-
-	halteEinsatz = _setzeAufSchwarz;
-
-	_auswahlWahl = "SCHWARZ";
-
-	_gespielteSpiele++;
-
-	cin.clear();
-	cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
-
-	if (_setzeAufSchwarz <= _spieler.holeKonto())
-	{
-		if (_setzeAufSchwarz < _Mindesteinsatz)
-		{
-			system("CLS");
-			//----------------------------------------------------------------------------------Menue
-			cout << "Der mindesteinsatz ist " << _Mindesteinsatz << endl << "Du hast aber " << _setzeAufRot << " versucht zu setzen " << endl;
-			printf("Weiter mit belibigen taste . . .");
-			//----------------------------------------------------------------------------------Menue
-
-			getchar();
-
-			Setzen = SETZE_SCHWARZ;
-			return;
-
 		}
 
-		system("CLS"); //Screen bereinigen
+		halteEinsatz = _setzeAufSchwarz;
 
-		_spieler.entferneKonto(_setzeAufSchwarz);
+		_auswahlWahl = "SCHWARZ";
 
-		kugelgefallen = _dealer.RolltKugel();//Werfe die Kugel
+		_gespielteSpiele++;
 
-		if (kugelgefallen == 0)
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
+
+		if (_setzeAufSchwarz <= _spieler.holeKonto())
 		{
-
-			_zahlZero++;
-
-			//----------------------------------------------------------------------------------Menue
-			printf("%s\n%s|Die Kugel rollt auf`s Zero feld\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), string(24, ' ').c_str(), string(95, '#').c_str());
-			//----------------------------------------------------------------------------------Menue
-
-			_casinoBank.setzeBankKonto(_setzeAufSchwarz);
-
-			_RundeGewonnen = false;
-
-			berechnungXpbeute();
-
-			_spieler.setzeEXP(xpanzahl);//XP und LVL Test
-
-			//prüfeLVLCap(_spieler.holeEXP());
-
-			_setzeAufSchwarz = NULL;
-
-		}
-		for (int i = 0; i < 18; i++)
-		{
-			if (kugelgefallen == schwarz[i])
+			if (_setzeAufSchwarz < _Mindesteinsatz)
 			{
+				system("CLS");
+				//----------------------------------------------------------------------------------Menue
+				cout << "Der mindesteinsatz ist " << _Mindesteinsatz << endl << "Du hast aber " << _setzeAufRot << " versucht zu setzen " << endl;
+				printf("Weiter mit belibigen taste . . .");
+				//----------------------------------------------------------------------------------Menue
+
+				getchar();
+
+				Setzen = SETZE_SCHWARZ;
+				return;
+
+			}
+
+			system("CLS"); //Screen bereinigen
+
+			_spieler.entferneKonto(_setzeAufSchwarz);
+
+			_kugelgefallen = _dealer.RolltKugel();//Werfe die Kugel
+
+			if (_kugelgefallen == 0)
+			{
+
+				_zahlZero++;
+
+				//----------------------------------------------------------------------------------Menue
+				printf("%s\n%s|Die Kugel rollt auf`s Zero feld\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), string(24, ' ').c_str(), string(95, '#').c_str());
+				//----------------------------------------------------------------------------------Menue
+
+				_casinoBank.setzeBankKonto(_setzeAufSchwarz);
+
+				_RundeGewonnen = false;
+
+				berechnungXpbeute();
+
+				_spieler.setzeEXP(xpanzahl);//XP und LVL Test
+
+				//prüfeLVLCap(_spieler.holeEXP());
+
+				_setzeAufSchwarz = NULL;
+
+			}
+			else if (_spieler.setzeAufSchwarz(_kugelgefallen)) {
 
 				_zahlSchwarz++;
 
 				//----------------------------------------------------------------------------------Menue
-				printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+				printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 				//----------------------------------------------------------------------------------Menue
 
 				_casinoBank.entferneBankKonto(_setzeAufSchwarz);
@@ -722,15 +893,14 @@ void Tisch::setzeAufSchwarzprint()
 
 				_setzeAufSchwarz = NULL;
 
-				
+
 			}
-			else if (kugelgefallen == rot[i])
-			{
+			else if (_spieler.setzeAufRot(_kugelgefallen)) {
 
 				_zahlRot++;
 
 				//----------------------------------------------------------------------------------Menue
-				printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+				printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 				//----------------------------------------------------------------------------------Menue
 
 				_casinoBank.setzeBankKonto(_setzeAufSchwarz);
@@ -745,12 +915,11 @@ void Tisch::setzeAufSchwarzprint()
 
 				_setzeAufSchwarz = NULL;
 
-				
+
 			}
+			getchar();
 
 		}
-
-		getchar();
 
 	}else {
 
@@ -760,24 +929,21 @@ void Tisch::setzeAufSchwarzprint()
 
 		optionen = SINGLE_PLAYER;
 		return;
-		}
-	}
+	}	
 }
-void Tisch::setzeAufZahlprint()
+void Tisch::setzeAufZahlPrint()
 {
 	if (_spieler.holeKonto() >= _Mindesteinsatz)
 	{
 		system("CLS");
 		//----------------------------------------------------------------------------------Menue
 		printf("%s\n", string(95, '#').c_str());
-		cout << "  Spieler Name:       " << _spieler.holeSpielerName() << "  LVL: " << _spieler.holeLVL(); printf("                   Casino Bank:  %0.1f  Euro   \n", _casinoBank.holeBank());
-		printf("  Spieler Konto:      %0.1f Euro.", _spieler.holeKonto()); printf("                  Mindesteinsatz:        %0.0f Cent   \n", _Mindesteinsatz);
-		printf("  XP Fortschrit:   %0.0f  %u%%                                                                 \n", _spieler.holeEXP(), _lvlCap);
+		printf("\tSpieler Name:%s\t\t\t\tCasino Bank:%.1f\n\tSpieler Konto:%.1f\t\t\t\tMindesteinsatz: %.1f\n\tLVL:%i\tEXP:%.2f\tCap:%i\t\t\t\tCasino Hausvorteil: 2,70%%\n", _spieler.holeSpielerName().c_str(), _casinoBank.holeBank(), _spieler.holeKonto(), _Mindesteinsatz, _spieler.holeLVL(), _spieler.holeEXP(), _spieler.holeLVLCap());
 		printf("%s\n", string(95, '#').c_str());
-		printf("\n\n\n\n\n\n\n\n\n\n\n");
-		printf("\n\n\n\n\n\n\n\n\n\n\n");
-		printf("                                Wie viel moechtest Du setzen?\n");
+		printf("%sAuszahlung: 2 zu 1%s%sAuszahlung: 8 zu 1%s%sAuszahlung: 2 zu 1%s\n", string(3, '-').c_str(), string(3, '-').c_str(), string(9, '-').c_str(), string(10, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str());
+		printf("(D1)D-1,2,3,4,5,6,7,8\t|(1)Q-1,2,4,5     |(2)Q-2,3,4,6     |(S1)S-1,4,7,10,13,16,19,22\n(D1)D-9,10,11,12\t%s(S1)S-25,28,31,34\n(D2)D-13,14,15,16,17,18\t|(3)Q-4,5,7,8     |(4)Q-5,6,8,9     |(S2)S-2,5,8,11,14,17,20\n(D2)D-19,20,21,22,23,24\t%s(S2)S-23,26,29,32,35\n(D3)D-25,26,27,28,29,30\t|(5)Q-7,8,10,11   |(6)Q-8,9,11,12   |(S3)S-3,6,9,12,15,18,21,24\n(D3)D-31,32,33,34,35,36\t%s(S3)S-27,30,33,36\n%sAuszahlung: 1 zu 1%s|(7)Q-10,11,13,14 |(8)Q-11,12,14,15 |%sAuszahlung: 1 zu 1%s\n(Lo)L-1,2,3,4,5,6,7,8,9\t%s(Ro)R-1,3,5,7,9,12,14,16,18,19\n(Lo)L-10,11,12,13,14,15\t|(9)Q-13,14,16,17 |(10)Q-14,15,17,18|(Ro)R-21,23,25,27,30,32,34,36\n(Lo)L-16,17,18\t\t%s(Sc)S-2,4,6,8,10,11,13,15,17,20\n(Hi)H-19,20,21,22,23,24\t|(11)Q-16,17,19,20|(12)Q-17,18,20,21|(Sc)S-22,24,26,28,29,31,33,35\n(Hi)H-25,26,27,28,29,30\t%s%sAuszahlung: 37 zu 1%s\n(Hi)H-31,32,33,34,35,36\t|(13)Q-19,20,22,23|(14)Q-20,21,23,24|(Z)Setze auf eine Zahl\n%sAuszahlung: 1 zu 1%s%s\n(Un)U-1,3,5,7,9,11,13\t|(15)Q-22,23,25,26|(16)Q-23,24,26,27|\n(Un)U-15,17,19,21,23,25\t%s\n(Un)U-27,29,31,33,35\t|(17)Q-25,26,28,29|(18)Q-26,27,29,30|\n\t\t\t%s\n(Ge)G-2,4,6,8,10,12,14\t|(19)Q-28,29,31,32|(20)Q-29,30,32,33|\n(Ge)G-16,18,20,22,24,26\t%s\n(Ge)G-28,30,32,34,36\t|(21)Q-31,32,34,35|(22)Q-32,33,35,36|\n\t\t\t%s\n", string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(3, '-').c_str(), string(3, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(6, '-').c_str(), string(10, '-').c_str(), string(3, '-').c_str(), string(3, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str(), string(37, '-').c_str());
 		printf("%s\n", string(95, '#').c_str());
+		printf("\t\t\t\tWie viel moechtest Du auf \"Zahl\" setzen ? \n");
 		//----------------------------------------------------------------------------------Menue
 
 		halteKonto = _spieler.holeKonto();
@@ -809,7 +975,7 @@ void Tisch::setzeAufZahlprint()
 		_auswahlWahl = "ZAHL";
 
 		//----------------------------------------------------------------------------------Menue
-		printf("                           Deine Zahl auf die Du Wetten moechtest?\n");
+		printf("\t\t\t\tDeine Zahl auf die Du wetten moechtest?\n");
 		//----------------------------------------------------------------------------------Menue
 
 		cin >> _ZahlAuswahl;
@@ -837,18 +1003,18 @@ void Tisch::setzeAufZahlprint()
 
 			system("CLS");
 
-			kugelgefallen = _dealer.RolltKugel();
+			_kugelgefallen = _dealer.RolltKugel();
 
 
 			//----------------------------------------------------------------------------------------------------------------------------------------
 
 
 
-			if (kugelgefallen == _ZahlAuswahl)
+			if (_kugelgefallen == _ZahlAuswahl)
 			{
 
 
-				printf("%s\n%s|Die Kugel rollt aufs Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+				printf("%s\n%s|Die Kugel rollt aufs Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 				
 				_casinoBank.entferneBankKonto(_setzeAufZahl);
 				
@@ -871,7 +1037,7 @@ void Tisch::setzeAufZahlprint()
 			else {
 
 
-				printf("%s\n%s|Die Kugel rollt aufs Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+				printf("%s\n%s|Die Kugel rollt aufs Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 				
 				_casinoBank.setzeBankKonto(_setzeAufZahl);
 				
@@ -893,7 +1059,7 @@ void Tisch::setzeAufZahlprint()
 	}
 	else {
 
-		printf("Du hast zu wenig Geld");
+		printf("Du hast zu wenig Geld!!!");
 
 		getchar();
 
@@ -901,258 +1067,12 @@ void Tisch::setzeAufZahlprint()
 		return;
 	}
 }
-void Tisch::AIMenuePrint()
+
+void Tisch::setzeAufUngeradePrint()
 {
-	double puffer = 0.0;
 
-	system("CLS");
-
-	//cleanupAIPlayer();
-
-	printAiMainMenu();
-
-	_setzeAufRot = _Mindesteinsatz;
-	_setzeAufSchwarz = _Mindesteinsatz;
-
-	_gewinnAIP += _einsatzAIP;
-
-	cin.clear();
-	cin.ignore(INT_MAX, '\n');//fix für doppelte ausgabe bug
-	//cin.ignore(CHAR_MAX, '\n');
-
-	switch (_farbe)
-
-			case 'r':
-			case 'R':
-
-				while (_aiPlayer.holeKonto() >= _Mindesteinsatz && _aiPlayer.holeKonto() <= _gewinnAIP)
-				{
-
-					if (_Runde == 'A')//doppeltgemoppelt
-					{				
-						//printf("\n%s|Setze auf Rot \n\n", string(24, '*').c_str());
-
-						halteKonto = _aiPlayer.holeKonto();
-
-						halteEinsatz = _Mindesteinsatz;
-
-						_gespielteSpiele++;
-
-						_auswahlWahl = "ROT";
-						
-						_aiPlayer.entferneKonto(_Mindesteinsatz);
-
-						kugelgefallen = _dealer.RolltKugel();
-
-						if (kugelgefallen == 0)
-						{
-							_zahlZero++;
-
-							//printGewinnVerlust(ZERO);
-
-							_casinoBank.setzeBankKonto(_Mindesteinsatz);
-
-							_verlorenAufRot += _Mindesteinsatz;
-
-							_RundeGewonnen = false;
-
-							berechnungXpbeute();
-
-							
-							_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
-
-							//prüfeLVLCap(_aiPlayer.holeEXP());
-
-							if ((_Mindesteinsatz*2)>_MultiCap)
-							{
-								_Mindesteinsatz = _setzeAufRot;
-							}
-							else {
-
-								_Mindesteinsatz += _Mindesteinsatz;
-							}
-							_Runde = 'B';
-						}
-						for (int i = 0; i < 18; i++)
-						{
-							if (kugelgefallen == rot[i])
-							{
-								_zahlRot++;
-
-								//printGewinnVerlust(WINRED);
-
-								_casinoBank.entferneBankKonto(_Mindesteinsatz);
-
-								_gewonnenAufRot += _Mindesteinsatz;
-
-								puffer = _Mindesteinsatz * 2;
-
-								_aiPlayer.setzeKonto(puffer);
-
-								_RundeGewonnen = true;
-
-								berechnungXpbeute();
-
-								_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
-
-								//prüfeLVLCap(_aiPlayer.holeEXP());
-
-								_Mindesteinsatz = _setzeAufRot;
-
-								puffer = 0.0f;
-							}
-							else if (kugelgefallen == schwarz[i])
-							{
-								_zahlSchwarz++;
-
-								//printGewinnVerlust(LOSEBLACK);
-
-								_casinoBank.setzeBankKonto(_Mindesteinsatz);
-
-								_verlorenAufRot += _Mindesteinsatz;
-
-								_RundeGewonnen = false;
-
-								berechnungXpbeute();
-
-								_aiPlayer.setzeEXP(xpanzahl);
-
-								//prüfeLVLCap(_aiPlayer.holeEXP());
-								
-								if ((_Mindesteinsatz * 2) > _MultiCap)
-								{
-									_Mindesteinsatz = _setzeAufRot;
-								}
-								else {
-
-									_Mindesteinsatz += _Mindesteinsatz;
-								}
-
-								_Runde = 'B';
-							}
-						}
-					}
-					else if (_Runde == 'B')
-					{
-						
-						//printf("\n%s|Setze auf Schwarz \n\n", string(24, '*').c_str());
-
-						halteKonto = _aiPlayer.holeKonto();
-
-						halteEinsatz = _Mindesteinsatz;
-
-						_gespielteSpiele++;
-
-						_auswahlWahl = "SCHWARZ";
-
-						_aiPlayer.entferneKonto(_Mindesteinsatz);
-
-						kugelgefallen = _dealer.RolltKugel();
-
-						if (kugelgefallen == 0)
-						{
-							_zahlZero++;
-
-							//printGewinnVerlust(ZERO);
-
-							_casinoBank.setzeBankKonto(_Mindesteinsatz);
-
-							_verlorenAufSchwarz += _Mindesteinsatz;
-
-							_RundeGewonnen = false;
-
-							berechnungXpbeute();
-
-							_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
-
-							//prüfeLVLCap(_aiPlayer.holeEXP());
-
-							if ((_Mindesteinsatz * 2) > _MultiCap)
-							{
-								_Mindesteinsatz = _setzeAufSchwarz;
-							}
-							else {
-
-								_Mindesteinsatz += _Mindesteinsatz;
-							}
-							_Runde = 'A';
-						}
-						for (int i = 0; i < 18; i++)
-						{
-							if (kugelgefallen == rot[i])
-							{
-								_zahlRot++;
-
-								//printGewinnVerlust(LOSERED);
-
-								_casinoBank.setzeBankKonto(_Mindesteinsatz);
-
-								_verlorenAufSchwarz += _Mindesteinsatz;
-
-								_RundeGewonnen = false;
-
-								berechnungXpbeute();
-
-								_aiPlayer.setzeEXP(xpanzahl);//XP und LVL Test
-
-								//prüfeLVLCap(_aiPlayer.holeEXP());
-
-								if ((_Mindesteinsatz * 2) > _MultiCap)
-								{
-									_Mindesteinsatz = _setzeAufSchwarz;
-								}
-								else {
-
-									_Mindesteinsatz += _Mindesteinsatz;
-								}
-								
-								_Runde = 'A';
-							}
-							else if (kugelgefallen == schwarz[i])
-							{
-
-								_zahlSchwarz++;
-
-								//printGewinnVerlust(WINBLACK);
-
-								_casinoBank.entferneBankKonto(_Mindesteinsatz);
-
-								_gewonnenAufSchwarz += _Mindesteinsatz;
-
-						
-								puffer = _Mindesteinsatz * 2;
-
-
-								_aiPlayer.setzeKonto(puffer);
-
-								_RundeGewonnen = true;
-
-								berechnungXpbeute();
-
-								_aiPlayer.setzeEXP(xpanzahl);
-
-								//prüfeLVLCap(_aiPlayer.holeEXP());
-
-								_Mindesteinsatz = _setzeAufSchwarz;
-
-								puffer = 0.0f;
-
-							}
-						}
-
-					}
-					
-				}
-				//system("CLS");
-
-				
-				for (string n : _vectorDaten)
-				{
-					cout << n;
-				}
-				Speichern();
-				getchar();
 }
+
 
 void Tisch::printAiMainMenu()
 {
@@ -1229,22 +1149,22 @@ void Tisch::printGewinnVerlust(unsigned short int c)
 		break;
 	case WINRED:
 		//----------------------------------------------------------------------------------Menue
-		printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+		printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der NR: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 		//----------------------------------------------------------------------------------Menue
 		break;
 	case LOSERED:
 		//----------------------------------------------------------------------------------Menue
-		printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der NR: %d|\n%s|      Du hast diese Runde Verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+		printf("%s\n%s|Die Kugel rollt aufs rote Feld mit der NR: %d|\n%s|      Du hast diese Runde Verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 		//----------------------------------------------------------------------------------Menue
 		break;
 	case WINBLACK:
 		//----------------------------------------------------------------------------------Menue
-		printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der Nr: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+		printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der Nr: %d|\n%s|      Du hast diese Runde Gewonnen !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 		//----------------------------------------------------------------------------------Menue
 		break;
 	case LOSEBLACK:
 		//----------------------------------------------------------------------------------Menue
-		printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
+		printf("%s\n%s|Die Kugel rollt aufs schwarze Feld mit der Nr: %d|\n%s|      Du hast diese Runde verloren !\n%s\n", string(95, '#').c_str(), string(24, ' ').c_str(), _kugelgefallen, string(24, ' ').c_str(), string(95, '#').c_str());
 		//----------------------------------------------------------------------------------Menue
 		break;
 	default:

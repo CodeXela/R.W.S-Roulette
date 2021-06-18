@@ -18,7 +18,7 @@ public:
 
 private:
 		
-	string _spielerName; //Lege var fest für Name
+	string _spielerName{}; //Lege var fest für Name
 	
 };
 

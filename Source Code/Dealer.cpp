@@ -19,7 +19,7 @@ Dealer::~Dealer()
 }
 
 
-int Dealer::RolltKugel()
+int Dealer::RolltKugel()//TO-DO: zufälligkeit verbessern
 {
 	static default_random_engine zufallGenerator(time(NULL));
 
