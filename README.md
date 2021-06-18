@@ -1,5 +1,5 @@
 #  :slot_machine:R.W.Simulator
-## :world_map:Project Ziele:
+## :world_map:Projekt Ziele:
 
    1. :gear:Grundgeruest:
 	
