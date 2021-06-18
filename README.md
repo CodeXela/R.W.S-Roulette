@@ -1,4 +1,4 @@
-#  :slot_machine:RGW Simulator
+#  :slot_machine:R.W.Simulator
 ## Zum Projekt:
 
 	Roulette Wahrscheinlichkeitssimulator 
